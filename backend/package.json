@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev backend": "ts-node-dev --rs --trace-warnings src/index.ts",
+    "build backend": "tsc --build tsconfing.json"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
+  }
+}
