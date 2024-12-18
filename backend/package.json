@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "scripts": {
     "dev backend": "ts-node-dev --rs --trace-warnings src/index.ts",
-    "build backend": "tsc --build tsconfing.json"
+    "build backend": "rimraf dist && tsc --build tsconfig.json",
+    "start backend": "node dist/index.js"
   },
   "devDependencies": {
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2"
