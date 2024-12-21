@@ -8,6 +8,7 @@
     "start backend": "node dist/index.js"
   },
   "dependencies": {
+    "@trpc/server": "^10.45.2",
     "express": "^4.21.2"
   },
   "devDependencies": {
