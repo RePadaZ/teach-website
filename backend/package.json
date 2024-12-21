@@ -3,11 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev backend": "ts-node-dev --rs --trace-warnings src/index.ts",
+    "dev backend": "ts-node-dev --rs src/index.ts",
     "build backend": "rimraf dist && tsc --build tsconfig.json",
     "start backend": "node dist/index.js"
   },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
