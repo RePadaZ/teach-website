@@ -1,7 +1,10 @@
-export function App() {
+import {TRPC_PROVIDER} from "./lib/trpc.tsx";
+import {Header} from "./Header.tsx";
+
+export const App = () => {
     return (
-        <main className="container-fluid">
-            Остальное
-        </main>
+        <TRPC_PROVIDER>
+            <Header />
+        </TRPC_PROVIDER>
     )
 }

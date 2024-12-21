@@ -1,10 +1,12 @@
-import type {TRPC_ROUTER} from "@ideanick/backend/src/trpc"
-import {createTRPCReact, httpBatchLink} from "@trpc/react-query";
+import {TRPC} from "./trcp-create.tsx";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import React from "react";
+import {httpBatchLink} from "@trpc/client";
 
-const TRPC = createTRPCReact<TRPC_ROUTER>();
-
+/*
+React query которая упрвляет логикой запросов а не типами
+Так же здесь производим его настройку
+*/
 const QUERY_CLIENT = new QueryClient({
     defaultOptions: {
         queries: {
@@ -14,6 +16,11 @@ const QUERY_CLIENT = new QueryClient({
     },
 })
 
+/*
+Создаем TRPC клиент и указываем для него где находится его endpoint
+для всех TRPC роутеров. Мы его пределели на backend в index.ts
+в строке "expressApp.use".
+ */
 const TRPC_CLIENT = TRPC.createClient({
     links: [
         httpBatchLink({
@@ -22,6 +29,7 @@ const TRPC_CLIENT = TRPC.createClient({
     ],
 })
 
+// Обработчик TRPC для наших данных
 export const TRPC_PROVIDER = ({children} : {children: React.ReactNode}) => {
     return (
         <TRPC.Provider client={TRPC_CLIENT} queryClient={QUERY_CLIENT}>
