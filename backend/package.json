@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "@ideanick/backend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev backend": "ts-node-dev --rs src/index.ts",
     "build backend": "rimraf dist && tsc --build tsconfig.json",
