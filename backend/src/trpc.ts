@@ -9,3 +9,5 @@ export const TRPC_ROUTER = TRPC.router({
     })
 
 });
+
+export type TRPC_ROUTER = typeof TRPC_ROUTER;
