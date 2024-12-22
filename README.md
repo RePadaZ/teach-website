@@ -10,7 +10,8 @@
 
 ## Технологии
 
-- **Frontend**: React, TypeScript
+
+- **Frontend**: React, React-Bootstrap, TypeScript
 - **Backend**: Node.js, Express
 - **База данных**: MongoDB
 
@@ -26,9 +27,12 @@
 
    ```bash
    cd teach-website/frontend
-   npm install
-   cd ../backend
-   npm install
+   pnpm install
+   cd ./backend/
+   pnpm install
+   cd ./frontend/
+   pnpm install
+   
    ```
 
 3. Создайте файл `.env` в директории `backend` и добавьте необходимые переменные окружения:

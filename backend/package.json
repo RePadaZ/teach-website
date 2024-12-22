@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "@ideanick/backend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev backend": "ts-node-dev --rs src/index.ts",
     "build backend": "rimraf dist && tsc --build tsconfig.json",
@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@trpc/server": "^10.45.2",
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
