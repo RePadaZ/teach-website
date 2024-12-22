@@ -6,8 +6,8 @@ const TRPC = initTRPC.create();
 // Создаем роуетер для наших запросов
 export const TRPC_ROUTER = TRPC.router({
 
-    getCard: TRPC.procedure.query(() => {
-        return {text: "hello world"};
+        getCards: TRPC.procedure.query(() => {
+        return {Nik: "text"};
     })
 
 });
