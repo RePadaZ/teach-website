@@ -1,7 +1,5 @@
 import {TRPC} from "../lib/trcp-create.tsx";
 
-
-
 export function TestPage() {
 
     const {data, isLoading, error, isError} = TRPC.getCards.useQuery();
