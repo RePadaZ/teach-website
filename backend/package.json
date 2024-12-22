@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@trpc/server": "^10.45.2",
-    "@types/cors": "^2.8.17",
     "cors": "^2.8.5",
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
