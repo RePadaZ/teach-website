@@ -10,6 +10,7 @@
 
 ## Технологии
 
+
 - **Frontend**: React, React-Bootstrap, TypeScript
 - **Backend**: Node.js, Express
 - **База данных**: MongoDB
@@ -31,6 +32,7 @@
    pnpm install
    cd ./frontend/
    pnpm install
+   
    ```
 
 3. Создайте файл `.env` в директории `backend` и добавьте необходимые переменные окружения:
