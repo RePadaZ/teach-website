@@ -5,7 +5,8 @@
   "scripts": {
     "dev backend": "ts-node-dev --rs src/index.ts",
     "build backend": "rimraf dist && tsc --build tsconfig.json",
-    "start backend": "node dist/index.js"
+    "start backend": "node dist/index.js",
+    "types": "tsc --noEmit --project tsconfig.json"
   },
   "dependencies": {
     "@trpc/server": "^10.45.2",
