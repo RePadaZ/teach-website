@@ -1,5 +1,11 @@
 {
   "name": "teach-website",
   "private": true,
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "scripts": {
+    "b": "pnpm --filter @ideanick/backend",
+    "f": "pnpm --filter @ideanick/frontend",
+    "parDev": "pnpm -r -parallel dev",
+    "parTypes": "pnpm -r -parallel types"
+  }
 }
