@@ -48,7 +48,7 @@ export function Login() {
                                                 </div>
                                                 <p className="text-center py-3">
                                                     You don't have an account yet?{' '}
-                                                    <a href="#" className="fw-bold text-body">
+                                                    <a href={'/sign'} className="fw-bold text-body">
                                                         <u>Sign up</u>
                                                     </a>
                                                 </p>
