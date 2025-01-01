@@ -5,6 +5,7 @@ import {Footer} from "./pages/template/Footer.tsx"
 import {Main} from "./pages/main/Main.tsx";
 import {Login} from "./pages/login/Login.tsx";
 import {Sing} from "./pages/sign/Sign.tsx";
+import {ToStart} from "./pages/to_start/ToStart.tsx";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 export const App = () => {
@@ -17,6 +18,7 @@ export const App = () => {
                         <Route path="/cards" element={<Cards />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/sign" element={<Sing />} />
+                        <Route path="/to_start" element={<ToStart />} />
                     </Routes>
                 </BrowserRouter>
             <Footer />
