@@ -6,12 +6,11 @@ import {Main} from "./pages/main/Main.tsx";
 import {Login} from "./pages/login/Login.tsx";
 import {Sing} from "./pages/sign/Sign.tsx";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import "./styles/global.scss"
 
 export const App = () => {
     return (
         <TRPC_PROVIDER>
-            <Header />
+            {<Header />}
                 <BrowserRouter>
                     <Routes >
                         <Route path="/" element={<Main/>} />
