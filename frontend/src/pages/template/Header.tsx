@@ -1,4 +1,4 @@
-import {Navbar, Nav, NavDropdown, Button, Container} from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown, Button, Container, Dropdown} from 'react-bootstrap';
 import scss from './header.module.scss';
 
 export function Header() {
@@ -19,48 +19,49 @@ export function Header() {
                         <NavDropdown
                             title="Frontend"
                             id="frontend-dropdown"
-                            className={scss.customButtonStyle}
+                            className={`btn-secondary bg-white text-dark ${scss.customButtonStyle}`}
                         >
-                            <NavDropdown.Item href={'/'}>Learn HTML</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>Learn CSS</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>Learn Bootstrap</NavDropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn HTML</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn CSS</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn Bootstrap</Dropdown.Item>
                         </NavDropdown>
                         <NavDropdown
                             title="Backend"
                             id="backend-dropdown"
-                            className={scss.customButtonStyle}
+                            className={`btn-secondary bg-white text-dark ${scss.customButtonStyle}`}
                         >
-                            <NavDropdown.Item href={'/'}>Learn TypeScript</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>Learn Java</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>Learn Golang</NavDropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn TypeScript</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn Java</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn Golang</Dropdown.Item>
                         </NavDropdown>
                         <NavDropdown
                             title="Game developer"
                             id="frontend-dropdown"
-                            className={scss.customButtonStyle}
+                            className={`btn-secondary bg-white text-dark ${scss.customButtonStyle}`}
                         >
-                            <NavDropdown.Item href={'/'}>Learn Rust</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>Learn C#</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>Learn C++</NavDropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn Rust</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn C#</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>Learn C++</Dropdown.Item>
                         </NavDropdown>
                         <NavDropdown
                             title="Services"
                             id="services-dropdown"
-                            className={scss.customButtonStyle}
+                            className={`btn-secondary bg-white text-dark ${scss.customButtonStyle}`}
                         >
-                            <NavDropdown.Item href={'/login'}>Login in / Sign Up</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>Templates</NavDropdown.Item>
-                            <NavDropdown.Item href={'/'}>How to create</NavDropdown.Item>
-                            <NavDropdown.Item href={'/cards'}>My project</NavDropdown.Item>
+                            <Dropdown.Item href={'/login'}>Login in / Sign Up</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>Templates</Dropdown.Item>
+                            <Dropdown.Item href={'/'}>How to create</Dropdown.Item>
+                            <Dropdown.Item href={'/cards'}>My project</Dropdown.Item>
                         </NavDropdown>
+
                     </Nav>
 
                     {/* Login Button */}
                     <Button
                         href={'/login'}
-                        className={`btn-secondary ${scss.customButtonStyle}`}
+                        className={`btn-secondary bg-white text-dark text-dark ${scss.customButtonStyle}`}
                     >
-                        Sign Up / Login in
+                        Login in / Sign Up
                     </Button>
                 </Container>
             </Navbar>
