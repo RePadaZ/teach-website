@@ -1,4 +1,21 @@
-.customBackStyle {
-  height: 50vh;
-  background-image: url("frontend/public/back.jpg");
+.mainContainer {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.contentWrapper {
+  height: 65vh;
+  padding: 1rem;
+}
+
+.hoverEffect {
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #47c1ea;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
 }
