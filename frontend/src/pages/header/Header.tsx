@@ -48,7 +48,7 @@ export function Header() {
                         <Dropdown.Item href={'/login'}>Login in / Sign Up</Dropdown.Item>
                         <Dropdown.Item href={'/'}>Templates</Dropdown.Item>
                         <Dropdown.Item href={'/'}>How to create</Dropdown.Item>
-                        <Dropdown.Item href={'/cards'}>My project</Dropdown.Item>
+                        <Dropdown.Item href={'/cards'}>Tech examples</Dropdown.Item>
                     </NavDropdown>
                 </Nav>
 
