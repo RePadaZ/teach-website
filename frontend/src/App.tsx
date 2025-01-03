@@ -8,7 +8,9 @@ import {Sing} from "./pages/sign/Sign.tsx";
 import {ToStart} from "./pages/to_start/ToStart.tsx";
 import {Clock} from "./pages/tech_examples/Clock.tsx";
 import {ToDoList} from "./pages/tech_examples/ToDoList.tsx";
+import {ContactForm} from "./pages/contact/ContactForm.tsx";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+
 
 export const App = () => {
     return (
@@ -16,13 +18,14 @@ export const App = () => {
             {<Header />}
                 <BrowserRouter>
                     <Routes >
-                        <Route path="/" element={<Main/>} />
-                        <Route path="/cards" element={<Cards />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/sign" element={<Sing />} />
-                        <Route path="/to_start" element={<ToStart />} />
-                        <Route path="/cards/clock" element={<Clock />} />
-                        <Route path="/cards/todolist" element={<ToDoList />} />
+                        <Route path={'/'} element={<Main/>} />
+                        <Route path={'/cards'} element={<Cards />} />
+                        <Route path={'/login'} element={<Login />} />
+                        <Route path={'/sign'} element={<Sing />} />
+                        <Route path={'/to_start'} element={<ToStart />} />
+                        <Route path={'/cards/clock'} element={<Clock />} />
+                        <Route path={'/cards/todolist'} element={<ToDoList />} />
+                        <Route path={'/contact'} element={<ContactForm />} />
                     </Routes>
                 </BrowserRouter>
             <Footer />
