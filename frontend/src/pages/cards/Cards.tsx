@@ -10,7 +10,7 @@ export function Cards() {
                             <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
                             <Card.Body>
                                 <Card.Title className="text-center">Clock</Card.Title>
-                                <Card.Text as="a" href="#" className="text-center d-block">
+                                <Card.Text as="a" href={'/cards/clock'} className="text-center d-block">
                                     Clock in JavaScript.
                                 </Card.Text>
                             </Card.Body>
@@ -21,7 +21,7 @@ export function Cards() {
                             <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
                             <Card.Body>
                                 <Card.Title className="text-center">To Do List</Card.Title>
-                                <Card.Text as="a" href="#" className="text-center d-block">
+                                <Card.Text as="a" href={'/cards/todolist'} className="text-center d-block">
                                     Simple To Do List in JavaScript
                                 </Card.Text>
                             </Card.Body>
