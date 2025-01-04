@@ -7,7 +7,7 @@ export function Main() {
             fluid
             className={`p-0 ${scss.mainContainer}`}
         >
-            <Row className='g-0 h-100'>
+            <Row className='g-0'>
                 {/* Фон в виде адаптивной картинки */}
                 <Col xs={12} className='position-relative p-0'>
                     <Image
