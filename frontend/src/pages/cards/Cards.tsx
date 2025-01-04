@@ -3,10 +3,10 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 export function Cards() {
     return (
         <>
-            <Container className="mt-4">
+            <Container className="mt-4 mb-4 vh-100">
                 <Row xs={1} md={4} className="g-4">
                     <Col>
-                        <Card className="custom-js-style">
+                        <Card>
                             <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
                             <Card.Body>
                                 <Card.Title className="text-center">Clock</Card.Title>
@@ -17,7 +17,7 @@ export function Cards() {
                         </Card>
                     </Col>
                     <Col>
-                        <Card className="custom-js-style">
+                        <Card>
                             <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
                             <Card.Body>
                                 <Card.Title className="text-center">To Do List</Card.Title>
@@ -28,7 +28,7 @@ export function Cards() {
                         </Card>
                     </Col>
                     <Col>
-                        <Card className="custom-js-style">
+                        <Card>
                             <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
                             <Card.Body>
                                 <Card.Title className="text-center">Карточка</Card.Title>
@@ -39,7 +39,7 @@ export function Cards() {
                         </Card>
                     </Col>
                     <Col>
-                        <Card className="custom-js-style">
+                        <Card>
                             <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
                             <Card.Body>
                                 <Card.Title className="text-center">Карточка</Card.Title>
@@ -50,54 +50,7 @@ export function Cards() {
                         </Card>
                     </Col>
                 </Row>
-            </Container>
-            <Container className="mt-4">
-                <Row xs={1} md={4} className="g-4">
-                    <Col>
-                        <Card className="custom-js-style">
-                            <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
-                            <Card.Body>
-                                <Card.Title className="text-center">Карточка</Card.Title>
-                                <Card.Text as="a" href="#" className="text-center d-block">
-                                    Описание карточки.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="custom-js-style">
-                            <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
-                            <Card.Body>
-                                <Card.Title className="text-center">Карточка</Card.Title>
-                                <Card.Text as="a" href="#" className="text-center d-block">
-                                    Описание карточки.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="custom-js-style">
-                            <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
-                            <Card.Body>
-                                <Card.Title className="text-center">Карточка</Card.Title>
-                                <Card.Text as="a" href="#" className="text-center d-block">
-                                    Описание карточки.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="custom-js-style">
-                            <Card.Img variant="top" src="https://via.placeholder.com/150" alt="Card Image" />
-                            <Card.Body>
-                                <Card.Title className="text-center">Карточка</Card.Title>
-                                <Card.Text as="a" href="#" className="text-center d-block">
-                                    Описание карточки.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+
             </Container>
         </>
     );
