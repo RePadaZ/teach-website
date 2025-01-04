@@ -1,8 +1,9 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
+// import scss from './footer.module.scss'
 
 export function Footer() {
     return (
-        <footer className='bg-dark text-white'>
+        <footer className={`bg-dark text-white m-auto h-auto`}>
             <Container>
                 <Row className='p-3'>
                     <Col md={4} className="text-center">
