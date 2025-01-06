@@ -22,6 +22,7 @@ export function Header() {
                         <Dropdown.Menu>
                             <Dropdown.Item href="/">Learn HTML</Dropdown.Item>
                             <Dropdown.Item href="/">Learn CSS</Dropdown.Item>
+                            <Dropdown.Item href="/">Learn JavaScript</Dropdown.Item>
                             <Dropdown.Item href="/">Learn Bootstrap</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
@@ -51,6 +52,20 @@ export function Header() {
                             <Dropdown.Item href="/">Learn Rust</Dropdown.Item>
                             <Dropdown.Item href="/">Learn C#</Dropdown.Item>
                             <Dropdown.Item href="/">Learn C++</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+
+                    <Dropdown data-bs-theme="dark">
+                        <Dropdown.Toggle
+                            id="frontend-dropdown"
+                            variant="outline-info"
+                        >
+                            1C Developer
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="/">Learn Base 1C</Dropdown.Item>
+                            <Dropdown.Item href="/">Learn Form</Dropdown.Item>
+                            <Dropdown.Item href="/">Learn Query</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
 
