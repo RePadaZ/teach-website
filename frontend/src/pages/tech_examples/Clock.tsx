@@ -17,7 +17,7 @@ export function Clock() {
 
     {/* Создание состояния для времени */}
     return (
-        <Container className="d-flex justify-content-center align-items-center vh-100">
+        <Container fluid className="d-flex justify-content-center align-items-center min-vh-100 GlobalBackGround">
             <Card className="p-5 bg-light shadow-lg fs-1">
                 {time.toLocaleTimeString()}
             </Card>

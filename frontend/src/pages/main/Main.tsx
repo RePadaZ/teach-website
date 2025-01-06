@@ -5,7 +5,7 @@ export function Main() {
     return (
         <Container
             fluid
-            className={`p-0 ${scss.mainContainer}`}
+            className={`p-0 min-vh-100 ${scss.mainContainer}`}
         >
             <Row className='g-0'>
                 {/* Фон в виде адаптивной картинки */}
