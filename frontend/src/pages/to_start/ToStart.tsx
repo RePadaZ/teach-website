@@ -30,15 +30,19 @@ export function ToStart() {
                     >
                         <Card className={scss.CustomStyleCard}>
                             <Card.Body>
-                                <Card.Title className='fs-4'>
-                                        {index + 1}. {card.title}
+                                <Card.Title className='text-center fs-5 fw-bold'>
+                                    {index + 1}. {card.title}
                                 </Card.Title>
-                                <Card.Text>
+                                <Card.Text className='text-center text-muted fs-6 py-3'>
                                     {card.text}
                                 </Card.Text>
-                                <Button className='btn-primary' href={card.href}>
-                                    {card.button}
-                                </Button>
+                                <div className="d-flex justify-content-center mt-3 py-2">
+                                    <Button href={card.href}
+                                            variant="primary"
+                                            className={`px - 4 py-2 rounded-pill`}>
+                                        {card.button}
+                                    </Button>
+                                </div>
                             </Card.Body>
                         </Card>
                     </Col>

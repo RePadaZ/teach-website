@@ -1,5 +1,4 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
-// import scss from './footer.module.scss'
 
 export function Footer() {
     return (
@@ -9,9 +8,9 @@ export function Footer() {
                     <Col md={4} className="text-center">
                         <h5>Contacts</h5>
                         <p>Email: example@email.com</p>
-                        <a className='link-info' href='/contact'>
+                        <Button variant="primary" href="/contact" target="_blank" className="m-2 rounded-pill">
                             Contact form
-                        </a>
+                        </Button>
                     </Col>
                     <Col md={4} className="text-center">
                         <h5>About Us</h5>
@@ -22,13 +21,13 @@ export function Footer() {
                     </Col>
                     <Col md={4} className="text-center">
                         <h5>Follow us</h5>
-                        <Button variant="outline-info" href="#" target="_blank" className="m-2">
+                        <Button variant="primary" href="#" target="_blank" className="m-2 rounded-pill">
                             Telegram
                         </Button>
-                        <Button variant="outline-info" href="#" target="_blank" className="m-2">
+                        <Button variant="primary" href="#" target="_blank" className="m-2 rounded-pill">
                             Discord
                         </Button>
-                        <Button variant="outline-info" href="#" target="_blank" className="m-2">
+                        <Button variant="primary" href="#" target="_blank" className="m-2 rounded-pill">
                             GitHub
                         </Button>
                     </Col>
