@@ -11,7 +11,7 @@ export function Cards() {
 
     return (
         <Container fluid className='min-vh-100 py-5 GlobalBackGround'>
-            <Row xs={12} md={4} className=" m-5">
+            <Row xs={12} md={4} className="m-5">
                 {cards.map((card) => (
                     <Col>
                         <Card>
