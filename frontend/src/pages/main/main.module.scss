@@ -1,14 +1,9 @@
-.mainContainer {
-  height: 100vh;
-  overflow: hidden;
-}
-
-.contentWrapper {
+.ContentWrapper {
   height: 65vh;
   padding: 1rem;
 }
 
-.hoverEffect {
+.HoverEffect {
   color: white;
   border: none;
   transition: all 0.3s ease;
@@ -17,5 +12,37 @@
     color: #47c1ea;
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.PointerPosition {
+  bottom: 25vh;
+  cursor: pointer;
+}
+
+.PointerCustomStyle {
+  border-radius: 20px;
+  background-color: #cff4fc;
+
+  &:hover {
+    background-color: #0dcaf0;
+    transform: scale(1.10);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.CardsCustomStyle {
+  width: 40vh;
+  max-width: 40vh;
+  min-height: 20vh;
+  max-height: 20vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 }
