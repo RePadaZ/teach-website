@@ -22,39 +22,39 @@ export function Header() {
                             <Dropdown.Menu>
                                 {category === "Frontend" && (
                                     <>
-                                        <Dropdown.Item href="/">Learn HTML</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn CSS</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn JavaScript</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn Bootstrap</Dropdown.Item>
+                                        <Dropdown.Item href="/html">Learn HTML</Dropdown.Item>
+                                        <Dropdown.Item href="/css">Learn CSS</Dropdown.Item>
+                                        <Dropdown.Item href="/java-script">Learn JavaScript</Dropdown.Item>
+                                        <Dropdown.Item href="/bootstrap">Learn Bootstrap</Dropdown.Item>
                                     </>
                                 )}
                                 {category === "Backend" && (
                                     <>
-                                        <Dropdown.Item href="/">Learn TypeScript</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn Java</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn Golang</Dropdown.Item>
+                                        <Dropdown.Item href="/type-script">Learn TypeScript</Dropdown.Item>
+                                        <Dropdown.Item href="/java">Learn Java</Dropdown.Item>
+                                        <Dropdown.Item href="/golang">Learn Golang</Dropdown.Item>
                                     </>
                                 )}
                                 {category === "Game Developer" && (
                                     <>
-                                        <Dropdown.Item href="/">Learn Rust</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn C#</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn C++</Dropdown.Item>
+                                        <Dropdown.Item href="/rust">Learn Rust</Dropdown.Item>
+                                        <Dropdown.Item href="/C#">Learn C#</Dropdown.Item>
+                                        <Dropdown.Item href="/C++">Learn C++</Dropdown.Item>
                                     </>
                                 )}
                                 {category === "1C Developer" && (
                                     <>
-                                        <Dropdown.Item href="/">Learn Base 1C</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn Form</Dropdown.Item>
-                                        <Dropdown.Item href="/">Learn Query</Dropdown.Item>
+                                        <Dropdown.Item href="/1c-base">Learn Base 1C</Dropdown.Item>
+                                        <Dropdown.Item href="/1c-form">Learn Form</Dropdown.Item>
+                                        <Dropdown.Item href="/1c-query">Learn Query</Dropdown.Item>
                                     </>
                                 )}
                                 {category === "Services" && (
                                     <>
                                         <Dropdown.Item href="/login">Login / Sign Up</Dropdown.Item>
-                                        <Dropdown.Item href="/">Templates</Dropdown.Item>
-                                        <Dropdown.Item href="/">How to create</Dropdown.Item>
-                                        <Dropdown.Item href="/cards">Tech Examples</Dropdown.Item>
+                                        <Dropdown.Item href="/templates">Templates</Dropdown.Item>
+                                        <Dropdown.Item href="/how-to-create">How to create</Dropdown.Item>
+                                        <Dropdown.Item href="/tech-examples">Tech Examples</Dropdown.Item>
                                     </>
                                 )}
                             </Dropdown.Menu>

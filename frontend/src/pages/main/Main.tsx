@@ -47,7 +47,7 @@ export function Main() {
                             <br/>including articles, lessons, code examples, and practical assignments.
                         </h3>
                         <a
-                            href="/to_start"
+                            href="/to-start"
                             className={`fs-5 fw-bold ${scss.HoverEffect}`}
                         >
                             Not Sure Where To Begin?
