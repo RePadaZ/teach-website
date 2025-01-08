@@ -3,10 +3,10 @@ import {Container, Row, Col, Card} from 'react-bootstrap';
 export function Cards() {
 
     const cards = [
-        { image: 'https://placehold.co/400', title: `Clock.`, href: '/cards/clock', text: 'Clock in JavaScript.'},
-        { image: 'https://placehold.co/400', title: `ToDoList.`, href: '/cards/todolist', text: 'ToDolist in JavaScript.'},
-        { image: 'https://placehold.co/400', title: `Clock.`, href: '/cards/clock', text: 'Clock in JavaScript.'},
-        { image: 'https://placehold.co/400', title: `Clock.`, href: '/cards/clock', text: 'Clock in JavaScript.'},
+        { image: 'https://placehold.co/400', title: `Clock.`, href: '/tech-examples/clock', text: 'Clock in JavaScript.'},
+        { image: 'https://placehold.co/400', title: `ToDoList.`, href: '/tech-examples/todolist', text: 'ToDolist in JavaScript.'},
+        { image: 'https://placehold.co/400', title: `Clock.`, href: '/tech-examples/clock', text: 'Clock in JavaScript.'},
+        { image: 'https://placehold.co/400', title: `Clock.`, href: '/tech-examples/clock', text: 'Clock in JavaScript.'},
     ];
 
     return (
