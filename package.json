@@ -1,10 +1,14 @@
 {
-  "name": "teach-website",
+  "name": "teach-website-all",
   "private": true,
   "version": "1.0.0",
+  "skipLibCheck": false,
+  "strict": true,
+  "strictNullChecks": true,
+  "isolatedModules": false,
   "scripts": {
-    "b": "pnpm --filter @ideanick/backend",
-    "f": "pnpm --filter @ideanick/frontend",
+    "b": "pnpm --filter @teach-website/backend",
+    "f": "pnpm --filter @teach-website/frontend",
     "parDev": "pnpm -r -parallel dev",
     "parTypes": "pnpm -r -parallel types"
   },

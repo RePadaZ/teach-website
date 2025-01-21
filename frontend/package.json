@@ -1,7 +1,11 @@
 {
-  "name": "@ideanick/frontend",
+  "name": "@teach-website/frontend",
   "private": true,
   "version": "1.0.0",
+  "skipLibCheck": false,
+  "strict": true,
+  "strictNullChecks": true,
+  "isolatedModules": false,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +15,7 @@
     "types": "tsc --noEmit --project tsconfig.json && tsc --noEmit --project tsconfig.node.json"
   },
   "dependencies": {
-    "@ideanick/backend": "workspace:*",
+    "@teach-website/backend": "workspace:*",
     "@tanstack/react-query": "^4.36.1",
     "@trpc/client": "^10.45.2",
     "@trpc/react-query": "^10.45.2",

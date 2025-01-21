@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { Button, Form, ListGroup, Container, Row, Col } from "react-bootstrap";
+import {useCallback, useState} from "react";
+import {Button, Col, Container, Form, ListGroup, Row} from "react-bootstrap";
 
 interface ToDo {
     id: number;
@@ -43,7 +43,7 @@ export function ToDoList() {
     );
 
     return (
-        <Container className="mt-5">
+        <Container fluid className="py-5 min-vh-100 text-light GlobalBackGround">
             <Row>
                 <Col md={{ span: 6, offset: 3 }}>
                     <h1 className="text-center mb-4">To-Do List</h1>

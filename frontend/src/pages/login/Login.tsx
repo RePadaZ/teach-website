@@ -1,9 +1,9 @@
-import {Row, Col, Card, Form, Button, Container} from 'react-bootstrap';
+import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 
 export function Login() {
     return (
         /* Закрашиваем фон и задаем позицию блока */
-        <Container fluid className="bg-dark-subtle min-vh-100">
+        <Container fluid className="min-vh-100 GlobalBackGround">
             <Container className="d-flex align-items-center vh-100">
                 <Container className="py-lg-5">
                     {/* Выравниваем нашу картучку и задаем размеры */}

@@ -1,9 +1,9 @@
-import {Container, Row, Col, Card, Form, Button} from 'react-bootstrap';
+import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 
 export function Sing() {
     return (
         /* Закрашиваем фон и задаем позицию блока */
-        <Container fluid className='bg-dark-subtle min-vh-100'>
+        <Container fluid className='min-vh-100 GlobalBackGround'>
             <Container className="d-flex align-items-center vh-100">
                 <Container>
                     {/* Выравниваем нашу картучку и задаем размеры */}
