@@ -1,7 +1,11 @@
 {
-  "name": "@ideanick/backend",
+  "name": "@teach-website/backend",
   "private": true,
   "version": "1.0.0",
+  "skipLibCheck": false,
+  "strict": true,
+  "strictNullChecks": true,
+  "isolatedModules": false,
   "scripts": {
     "dev": "ts-node-dev --rs src/index.ts",
     "build": "rimraf dist && tsc --build tsconfig.json",
