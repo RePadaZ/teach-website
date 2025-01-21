@@ -1,20 +1,27 @@
-import {Container, Row, Col, Card} from 'react-bootstrap';
+import {Card, Col, Container, Row} from 'react-bootstrap';
+import {TRPC} from "../../lib/trcp-create.tsx";
+
 
 export function Cards() {
 
-    const cards = [
-        { image: 'https://placehold.co/400', title: `Clock.`, href: '/tech-examples/clock', text: 'Clock in JavaScript.'},
-        { image: 'https://placehold.co/400', title: `ToDoList.`, href: '/tech-examples/todolist', text: 'ToDolist in JavaScript.'},
-        { image: 'https://placehold.co/400', title: `Clock.`, href: '/tech-examples/clock', text: 'Clock in JavaScript.'},
-        { image: 'https://placehold.co/400', title: `Clock.`, href: '/tech-examples/clock', text: 'Clock in JavaScript.'},
-    ];
+    const {data, error, isLoading, isFetching, isError} = TRPC.getCards.useQuery();
+
+    if (isError) {
+        return <span>{error.message}</span>;
+    }
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
+    if (isFetching){
+        return <span>Loading...</span>;
+    }
 
     return (
         <Container fluid className='min-vh-100 py-5 GlobalBackGround'>
             <Row xs={12} md={4} className="m-5">
-                {cards.map((card) => (
-                    <Col>
-                        <Card>
+                {data.cards.map((card) => (
+                    <Col key={card.id}>
+                        <Card key={card.id}>
                             <Card.Img variant="top" src={card.image} alt="Card Image"/>
                             <Card.Body>
                                 <Card.Title className="text-center">{card.title}</Card.Title>
