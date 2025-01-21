@@ -1,4 +1,4 @@
-import {Card, Container, Row, Col, Button} from 'react-bootstrap';
+import {Button, Card, Col, Container, Row} from 'react-bootstrap';
 import scss from './toStart.module.scss';
 
 export function ToStart() {

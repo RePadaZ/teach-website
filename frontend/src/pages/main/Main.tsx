@@ -1,4 +1,4 @@
-import {Container, Row, Col, Image, Card, Button} from 'react-bootstrap';
+import {Button, Card, Col, Container, Image, Row} from 'react-bootstrap';
 import scss from './main.module.scss';
 import ImgPointer from '../../assets/pointer.svg'
 

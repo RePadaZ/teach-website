@@ -10,7 +10,7 @@ import {Clock} from "./pages/tech-examples/Clock.tsx";
 import {ToDoList} from "./pages/tech-examples/ToDoList.tsx";
 import {ContactForm} from "./pages/contact/ContactForm.tsx";
 import {OneCBase} from "./pages/1C/1C-base.tsx";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 
 export const App = () => {

@@ -1,4 +1,4 @@
-import {Container, Row, Col, Card, Form, Button} from 'react-bootstrap';
+import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 
 export function Sing() {
     return (

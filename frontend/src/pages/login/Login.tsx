@@ -1,4 +1,4 @@
-import {Row, Col, Card, Form, Button, Container} from 'react-bootstrap';
+import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 
 export function Login() {
     return (
