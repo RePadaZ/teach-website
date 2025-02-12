@@ -1,73 +1,111 @@
-import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
-import scss from './contactFrom.module.scss';
+import { useState } from "react";
+import { Transition } from "@headlessui/react";
 
 export function ContactForm() {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const handleSubmit = () => {
+        setIsSubmitted(true);
+        setTimeout(() => setIsSubmitted(false), 3000); // Скрыть сообщение через 3 секунды
+    };
+
     return (
-        <Container fluid className='min-vh-100 GlobalBackGround'>
-            <Container className="d-flex align-items-center vh-100 w-50">
-                <Container className="py-lg-5">
-                    <Row className="d-flex justify-content-center align-items-center">
-                        <Col xs={12} md={9} lg={7} xl={6}>
-                            <Card>
-                                {/* Заголовок карточки */}
-                                <Card.Body className="p-5">
-                                    <h2 className="text-uppercase text-center mb-5">
-                                        Send us a Message
-                                    </h2>
-                                    <Form id="form" className="container-form" action="" method="post">
-                                        <Form.Group controlId="name">
-                                            <Form.Label>First name:</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                name="name"
-                                                placeholder="Name"
-                                                required
-                                            />
-                                        </Form.Group>
-                                        <Form.Group controlId="email">
-                                            <Form.Label>Your email:</Form.Label>
-                                            <Form.Control
-                                                type="email"
-                                                name="email"
-                                                placeholder="Email"
-                                                required
-                                            />
-                                        </Form.Group>
-                                        <Form.Group controlId="phone">
-                                            <Form.Label>Your phone:</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                name="phone"
-                                                placeholder="+7 999 999 99 99"
-                                                required
-                                            />
-                                        </Form.Group>
-                                        <Form.Group controlId="textarea">
-                                            <Form.Label>Your message:</Form.Label>
-                                            <Form.Control
-                                                className={scss.textAreaStyle}
-                                                as="textarea"
-                                                name="textarea"
-                                                placeholder="Write your message. Max length of 500 characters"
-                                                maxLength={500}
-                                                required
-                                            />
-                                        </Form.Group>
-                                        <footer className="footer mt-3">
-                                            <Button variant="primary" type="submit">
-                                                Send Message
-                                            </Button>
-                                            <p id="text-send" className="mt-2">
-                                                Thanks for your feedback
-                                            </p>
-                                        </footer>
-                                    </Form>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-            </Container>
-        </Container>
-    )
+        <div className="min-h-screen bg-gray-900 flex items-center justify-center p-6">
+            <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl p-8">
+                {/* Заголовок формы */}
+                <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">
+                    Send us a Message
+                </h2>
+
+                {/* Форма */}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Поле для имени */}
+                    <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                            First name:
+                        </label>
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            placeholder="Name"
+                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            required
+                        />
+                    </div>
+
+                    {/* Поле для email */}
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                            Your email:
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            required
+                        />
+                    </div>
+
+                    {/* Поле для телефона */}
+                    <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                            Your phone:
+                        </label>
+                        <input
+                            id="phone"
+                            type="text"
+                            name="phone"
+                            placeholder="+7 999 999 99 99"
+                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            required
+                        />
+                    </div>
+
+                    {/* Поле для сообщения */}
+                    <div>
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                            Your message:
+                        </label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Write your message. Max length of 500 characters"
+                            maxLength={500}
+                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+                            rows={5}
+                            required
+                        />
+                    </div>
+
+                    {/* Кнопка отправки */}
+                    <div className="flex justify-center">
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                        >
+                            Send Message
+                        </button>
+                    </div>
+
+                    {/* Сообщение об успешной отправке */}
+                    <Transition
+                        show={isSubmitted}
+                        enter="transition-opacity duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="transition-opacity duration-300"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <p className="text-center text-green-400 mt-4">
+                            Thanks for your feedback!
+                        </p>
+                    </Transition>
+                </form>
+            </div>
+        </div>
+    );
 }

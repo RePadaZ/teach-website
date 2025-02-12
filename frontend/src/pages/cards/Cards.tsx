@@ -1,38 +1,42 @@
-import {Card, Col, Container, Row} from 'react-bootstrap';
-import {TRPC} from "../../lib/trcp-create.tsx";
-
+import { TRPC } from "../../lib/trcp-create.tsx";
 
 export function Cards() {
-
-    const {data, error, isLoading, isFetching, isError} = TRPC.getCards.useQuery();
+    const { data, error, isLoading, isFetching, isError } = TRPC.getCards.useQuery();
 
     if (isError) {
-        return <span>{error.message}</span>;
+        return <span className="text-red-500">{error.message}</span>;
     }
-    if (isLoading) {
-        return <span>Loading...</span>;
-    }
-    if (isFetching){
-        return <span>Loading...</span>;
+    if (isLoading || isFetching) {
+        return <span className="text-blue-500">Loading...</span>;
     }
 
     return (
-        <Container fluid className='min-vh-100 py-5 GlobalBackGround'>
-            <Row xs={12} md={4} className="m-5">
-                {data.cards.map((card) => (
-                    <Col key={card.id}>
-                        <Card key={card.id}>
-                            <Card.Img variant="top" src={card.image} alt="Card Image"/>
-                            <Card.Body>
-                                <Card.Title className="text-center">{card.title}</Card.Title>
-                                <Card.Text as="a" href={card.href} className="text-center d-block">
+        <div className="min-h-screen bg-gray-900 py-12 px-6">
+            <div className="container mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {data.cards.map((card) => (
+                        <div
+                            key={card.id}
+                            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                        >
+                            <img
+                                src={card.image}
+                                alt="Card Image"
+                                className="w-full h-48 object-cover"
+                            />
+                            <div className="p-6 text-center">
+                                <h3 className="text-xl font-bold text-white mb-4">{card.title}</h3>
+                                <a
+                                    href={card.href}
+                                    className="text-blue-400 hover:text-blue-300 transition-colors block text-sm font-medium"
+                                >
                                     {card.text}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))};
-            </Row>
-        </Container>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
     );
 }
