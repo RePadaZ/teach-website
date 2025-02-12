@@ -91,7 +91,7 @@ export function Main() {
                         enterTo="opacity-100"
                     >
                         <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 flex justify-center">
-                            <div className="rounded-lg shadow-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors w-full max-w-xs transform hover:scale-105 transition-transform">
+                            <div className="rounded-lg shadow-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors w-full max-w-xs transform hover:scale-105">
                                 <div className="p-6 text-center">
                                     <h3 className="text-xl font-bold">{card.title}</h3>
                                     <p className="text-gray-300 my-4">
