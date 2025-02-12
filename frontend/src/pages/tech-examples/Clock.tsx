@@ -1,12 +1,11 @@
 import {useEffect, useState} from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
+import {Transition} from "@headlessui/react";
 
 export function Clock() {
+    // Состояние для времени
+    const [time, setTime] = useState(new Date());
 
-    {/* Создание состояния для времени */}
-    const [time, setTime] = useState<Date>(new Date());
-
-    {/* Настройка интервала */}
+    // Настройка интервала
     useEffect(() => {
         const intervalId = setInterval(() => {
             setTime(new Date());
@@ -15,24 +14,29 @@ export function Clock() {
         return () => clearInterval(intervalId);
     }, []);
 
-    {/* Создание состояния для времени */}
     return (
-        <Container fluid className="min-vh-100 GlobalBackGround">
-            <Row className="text-light py-5 justify-content-center">
-                <Col xs={12} md={8} lg={6} className="text-center">
-                    <h2 className="mb-3">Часы на JavaScript</h2>
-                    <p className="fs-5">
-                        Узнайте, как создать часы на чистом JavaScript и с использованием React.
-                    </p>
-                </Col>
-            </Row>
-            <Row className="justify-content-center">
-                <Col xs={12} md={6}>
-                    <Card className="p-5 bg-light shadow-lg text-center">
-                        <span className="fs-1 fw-bold">{time.toLocaleTimeString()}</span>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
-    )
+        <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center py-12 px-6">
+            {/* Заголовок и описание */}
+            <div className="text-center text-white mb-8">
+                <h2 className="text-3xl font-bold mb-4">Часы на JavaScript</h2>
+                <p className="text-lg text-gray-300">
+                    Узнайте, как создать часы на чистом JavaScript и с использованием React.
+                </p>
+            </div>
+
+            {/* Карточка с часами */}
+            <Transition
+                key={time.toLocaleTimeString()} // Анимация при изменении времени
+                appear={true}
+                show={true}
+                enter="transition-opacity duration-500"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+            >
+    <span className="text-6xl font-bold text-white">
+        {time.toLocaleTimeString()}
+    </span>
+            </Transition>
+        </div>
+    );
 }

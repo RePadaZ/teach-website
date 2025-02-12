@@ -1,70 +1,98 @@
-import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
+import { useState } from "react";
+import { Transition } from "@headlessui/react";
 
 export function Login() {
+    const [login, setLogin] = useState("");
+    const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
+
+    const handleSubmit = () => {
+        console.log("Login:", login, "Password:", password, "Remember Me:", rememberMe);
+    };
+
     return (
-        /* Закрашиваем фон и задаем позицию блока */
-        <Container fluid className="min-vh-100 GlobalBackGround">
-            <Container className="d-flex align-items-center vh-100">
-                <Container className="py-lg-5">
-                    {/* Выравниваем нашу картучку и задаем размеры */}
-                    <Row className="d-flex justify-content-center align-items-center">
-                        <Col xs={12} md={9} lg={7} xl={6}>
-                            <Card>
-                                {/* Заголовок карточки */}
-                                <Card.Body className="p-5">
-                                    <h2 className="text-uppercase text-center mb-5">
-                                        Login your account
-                                    </h2>
-                                    <Form>
-                                        {/* Форма ввода данных пользователем */}
-                                        <Form.Group className="mb-4" controlId="form3Example1cg">
-                                            <Form.Label>Your Login</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="Login"
-                                                size="lg"
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-4" controlId="form3Example4cg">
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                size="lg"
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="form-check d-flex justify-content-center mb-4"
-                                                    controlId="form2Example3cg">
-                                            <Form.Check
-                                                type="checkbox"
-                                                label="Remember login details"
-                                            />
-                                        </Form.Group>
-                                        <div className="d-flex justify-content-center">
-                                            {/* Кнопка откравки данных */}
-                                            <Button
-                                                type="button"
-                                                variant="success"
-                                                size="lg"
-                                                className="text-body custom-button-style"
-                                            >
-                                                Login
-                                            </Button>
-                                        </div>
-                                        {/* Сслыка на страницу регистрации */}
-                                        <p className="text-center py-3">
-                                            You don't have an account yet?{' '}
-                                            <a href={'/sign'} className="fw-bold text-body">
-                                                <u>Sign up</u>
-                                            </a>
-                                        </p>
-                                    </Form>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-            </Container>
-        </Container>
+        <div className="min-h-screen bg-gray-900 flex items-center justify-center p-6">
+            <Transition
+                appear={true}
+                show={true}
+                enter="transition-opacity duration-1000"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+            >
+                <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl p-8">
+                    {/* Заголовок формы */}
+                    <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">
+                        Login to your account
+                    </h2>
+
+                    {/* Форма */}
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Поле для логина */}
+                        <div>
+                            <label htmlFor="login" className="block text-sm font-medium text-gray-300 mb-2">
+                                Your Login
+                            </label>
+                            <input
+                                id="login"
+                                type="text"
+                                placeholder="Login"
+                                value={login}
+                                onChange={(e) => setLogin(e.target.value)}
+                                className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                                required
+                            />
+                        </div>
+
+                        {/* Поле для пароля */}
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                                Password
+                            </label>
+                            <input
+                                id="password"
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                                required
+                            />
+                        </div>
+
+                        {/* Чекбокс "Запомнить меня" */}
+                        <div className="flex items-center justify-center">
+                            <input
+                                id="rememberMe"
+                                type="checkbox"
+                                checked={rememberMe}
+                                onChange={(e) => setRememberMe(e.target.checked)}
+                                className="w-5 h-5 text-blue-500 rounded focus:ring-blue-600"
+                            />
+                            <label htmlFor="rememberMe" className="ml-2 text-sm text-gray-300">
+                                Remember login details
+                            </label>
+                        </div>
+
+                        {/* Кнопка отправки */}
+                        <div className="flex justify-center">
+                            <button
+                                type="submit"
+                                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                            >
+                                Login
+                            </button>
+                        </div>
+
+                        {/* Ссылка на регистрацию */}
+                        <p className="text-center text-gray-400">
+                            You don't have an account yet?{" "}
+                            <a href="/sign" className="text-blue-400 hover:text-blue-300 underline">
+                                Sign up
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </Transition>
+        </div>
     );
 }
-

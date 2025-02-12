@@ -1,102 +1,114 @@
-import {Button, Card, Col, Container, Image, Row} from 'react-bootstrap';
-import scss from './main.module.scss';
-import ImgPointer from '../../assets/pointer.svg'
-
+import { Transition } from '@headlessui/react';
+import ImgPointer from '../../assets/pointer.svg';
+import { TRPC } from "../../lib/trcp-create.tsx";
 
 const scrollToSection = () => {
     const section = document.getElementById('next-section');
     if (section) {
-        section.scrollIntoView({behavior: 'smooth'});
+        section.scrollIntoView({ behavior: 'smooth' });
     }
-}
-
-const cards = [
-    {title: `HTML`, href: '/html', text: 'HTML text', button: 'HTML'},
-    {title: `CSS`, href: '/css', text: 'CSS text', button: 'CSS'},
-    {title: `JavaScript`, href: '/javascript', text: 'A programming language', button: 'Start learn JS'},
-    {title: `Bootstrap`, href: '/bootstrap', text: 'Bootstrap text', button: 'Bootstrap'},
-    {title: `TypeScript`, href: '/typescript', text: 'TypeScript text', button: 'TypeScript'},
-    {title: `Java`, href: '/java', text: 'Java text', button: 'Java'},
-    {title: `Golang`, href: '/golang', text: 'Golang text', button: 'Golang'},
-    {title: `Rust`, href: '/rust', text: 'Rust text', button: 'Rust'},
-];
+};
 
 export function Main() {
-    return (
-        <Container
-            fluid
-            className='min-vh-100'
-        >
-            <Row className="min-vh-100 p-0 position-relative">
-                {/* Фон в виде адаптивной картинки */}
-                <Col xs={12} className="p-0">
-                    <Image
-                        src="mainBackGround.jpg"
-                        alt="Background"
-                        className="w-100 h-100 object-fit-cover"
-                    />
+    const { data, error, isLoading, isFetching, isError } = TRPC.getMainCards.useQuery();
 
-                    {/* Контент поверх фона */}
-                    <div
-                        className={`position-absolute top-50 start-50 translate-middle text-center text-white ${scss.ContentWrapper}`}>
-                        <h1 className="display-3 fw-bold mb-4">
-                            Learn to Code
-                        </h1>
-                        <h3 className="fs-4 mb-4">
+    if (isError) {
+        return <span className="text-red-500">{error.message}</span>;
+    }
+    if (isLoading || isFetching) {
+        return <span className="text-blue-500">Loading...</span>;
+    }
+
+    return (
+        <div className="min-h-screen bg-gray-900">
+            {/* Hero Section */}
+            <div className="relative min-h-screen overflow-hidden">
+                <img
+                    src="mainBackGround.jpg"
+                    alt="Background"
+                    className="w-full h-full object-cover absolute inset-0 opacity-50"
+                />
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
+                    <Transition
+                        appear={true}
+                        show={true}
+                        enter="transition-opacity duration-1000"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                    >
+                        <h1 className="text-6xl font-bold mb-6">Learn to Code</h1>
+                    </Transition>
+                    <Transition
+                        appear={true}
+                        show={true}
+                        enter="transition-opacity duration-1000 delay-500"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                    >
+                        <h3 className="text-2xl mb-6">
                             You will find many useful resources here,
-                            <br/>including articles, lessons, code examples, and practical assignments.
+                            <br />including articles, lessons, code examples, and practical assignments.
                         </h3>
+                    </Transition>
+                    <Transition
+                        appear={true}
+                        show={true}
+                        enter="transition-opacity duration-1000 delay-1000"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                    >
                         <a
                             href="/to-start"
-                            className={`fs-5 fw-bold ${scss.HoverEffect}`}
+                            className="text-lg font-bold hover:text-blue-300 transition-colors"
                         >
                             Not Sure Where To Begin?
                         </a>
-                    </div>
-
-                    {/* Стрелка для прокрутки */}
-                    <a
-                        className={`position-absolute start-50 translate-middle-x ${scss.PointerPosition}`}
-                        onClick={scrollToSection}
-                    >
-                        <img className={scss.PointerCustomStyle} src={ImgPointer} alt="pointer"/>
-                    </a>
-                </Col>
-            </Row>
-
-            {/* Целевая секция */}
-            <Row
-                id="next-section"
-                className="min-vh-100 py-5 px-3 text-light GlobalBackGround d-flex flex-wrap justify-content-center
-                            align-items-start gap-4"
-            >
-                <div className="text-center fw-bold">
-                    <h2>
-                        Sections available for study
-                    </h2>
+                    </Transition>
                 </div>
-                {cards.map((card) => (
-                    <Col xs={12} sm={6} md={4} lg={3} className="d-flex justify-content-center">
-                        <Card className={`rounded-4 ${scss.CardsCustomStyle}`}>
-                            <Card.Body>
-                                <Card.Title className="text-center fs-5 fw-bold">{card.title}</Card.Title>
-                                <Card.Text className="text-center text-muted fs-6 py-3">
-                                    {card.text}
-                                </Card.Text>
-                                <div className="d-flex justify-content-center mt-3 py-2">
-                                    <Button
+                <button
+                    onClick={scrollToSection}
+                    className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer focus:outline-none"
+                >
+                    <img src={ImgPointer} alt="pointer" className="animate-bounce h-20 w-20" />
+                </button>
+            </div>
+
+            {/* Cards Section */}
+            <div
+                id="next-section"
+                className="min-h-screen py-12 px-6 bg-gray-800 flex flex-wrap justify-center items-start gap-8"
+            >
+                <div className="w-full text-center">
+                    <h2 className="text-4xl font-bold text-white mb-12">Sections available for study</h2>
+                </div>
+                {data.mainCards.map((card, index) => (
+                    <Transition
+                        key={index}
+                        appear={true}
+                        show={true}
+                        enter="transition-opacity duration-1000"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                    >
+                        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 flex justify-center">
+                            <div className="rounded-lg shadow-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors w-full max-w-xs transform hover:scale-105">
+                                <div className="p-6 text-center">
+                                    <h3 className="text-xl font-bold">{card.title}</h3>
+                                    <p className="text-gray-300 my-4">
+                                        {card.text}
+                                    </p>
+                                    <a
                                         href={card.href}
-                                        variant="primary"
-                                        className={`px - 4 py-2 rounded-pill`}
+                                        className="inline-block px-6 py-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors text-white font-bold"
                                     >
                                         {card.button}
-                                    </Button>
+                                    </a>
                                 </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                            </div>
+                        </div>
+                    </Transition>
                 ))}
-            </Row>
-        </Container>
+            </div>
+        </div>
     );
 }
