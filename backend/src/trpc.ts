@@ -1,5 +1,5 @@
 import {initTRPC} from "@trpc/server";
-import {cards, header} from "./bd/fake-bd";
+import {cards, header, mainCards} from "./bd/fake-bd";
 
 // Создаем TRPC для связи типов между backend и frontend
 const TRPC = initTRPC.create();
@@ -13,6 +13,10 @@ export const TRPC_ROUTER = TRPC.router({
 
     getHeader: TRPC.procedure.query(() => {
         return {header};
+    }),
+
+    getMainCards: TRPC.procedure.query(() => {
+        return {mainCards};
     })
 
 });

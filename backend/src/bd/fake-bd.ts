@@ -39,3 +39,14 @@ export const header= [
         ]
     }
 ]
+
+export const mainCards= [
+    {id: 1, title: `HTML`, href: '/html', text: 'HTML text', button: 'HTML'},
+    {id: 2, title: `CSS`, href: '/css', text: 'CSS text', button: 'CSS'},
+    {id: 3, title: `JavaScript`, href: '/javascript', text: 'A programming language', button: 'JavaScript'},
+    {id: 4, title: `Bootstrap`, href: '/bootstrap', text: 'Bootstrap text', button: 'Bootstrap'},
+    {id: 5, title: `TypeScript`, href: '/typescript', text: 'TypeScript text', button: 'TypeScript'},
+    {id: 6, title: `Java`, href: '/java', text: 'Java text', button: 'Java'},
+    {id: 7, title: `Golang`, href: '/golang', text: 'Golang text', button: 'Golang'},
+    {id: 8, title: `Rust`, href: '/rust', text: 'Rust text', button: 'Rust'},
+];
