@@ -1,70 +1,109 @@
-import { useState } from "react";
+import { useState, useCallback, useReducer, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 
+// Типы для формы
+interface FormState {
+    name: string;
+    email: string;
+    phone?: string;
+    message: string;
+}
+
+// Инициализация формы
+const initialFormState: FormState = {
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+};
+
+// Редюсер для управления формой
+function formReducer(state: FormState, action: { type: string; payload: string }) {
+    return { ...state, [action.type]: action.payload };
+}
+
 export function ContactForm() {
+    // Управление состоянием формы через useReducer
+    const [formData, dispatch] = useReducer(formReducer, initialFormState);
+
+    // Состояние для отображения сообщения об успешной отправке
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleSubmit = () => {
-        setIsSubmitted(true);
-        setTimeout(() => setIsSubmitted(false), 3000); // Скрыть сообщение через 3 секунды
+    // Универсальный обработчик изменений
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        dispatch({ type: name, payload: value });
+    }, []);
+
+    // Валидация формы
+    const validateForm = () => {
+        const { name, email, message } = formData;
+        if (!name || !email || !message) {
+            alert("Please fill in all required fields.");
+            return false;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+        return true;
     };
+
+    // Обработчик отправки формы
+    const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+         e.preventDefault();
+
+        if (!validateForm()) return;
+
+        console.log("Form Data:", formData);
+
+        // Очистка полей формы
+        Object.keys(initialFormState).forEach((key) =>
+            dispatch({ type: key, payload: "" })
+        );
+
+        // Отображение сообщения
+        setIsSubmitted(true);
+    }, [formData]);
+
+    // Автоматическое скрытие сообщения об успешной отправке
+    useEffect(() => {
+        if (isSubmitted) {
+            const timer = setTimeout(() => setIsSubmitted(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [isSubmitted]);
 
     return (
         <div className="min-h-screen bg-gray-900 flex items-center justify-center p-6">
             <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl p-8">
-                {/* Заголовок формы */}
                 <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">
                     Send us a Message
                 </h2>
 
-                {/* Форма */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Поле для имени */}
-                    <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                            First name:
-                        </label>
-                        <input
-                            id="name"
-                            type="text"
-                            name="name"
-                            placeholder="Name"
-                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required
-                        />
-                    </div>
+                    {[
+                        { id: "name", type: "text", label: "First name", placeholder: "Name", required: true },
+                        { id: "email", type: "email", label: "Your email", placeholder: "Email", required: true },
+                        { id: "phone", type: "text", label: "Your phone (optional)", placeholder: "+7 999 999 99 99", required: false }
+                    ].map(({ id, type, label, placeholder, required }) => (
+                        <div key={id}>
+                            <label htmlFor={id} className="block text-sm font-medium text-gray-300 mb-2">
+                                {label}:
+                            </label>
+                            <input
+                                id={id}
+                                type={type}
+                                name={id}
+                                placeholder={placeholder}
+                                value={formData[id as keyof FormState] || ""}
+                                onChange={handleChange}
+                                className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                required={required}
+                            />
+                        </div>
+                    ))}
 
-                    {/* Поле для email */}
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                            Your email:
-                        </label>
-                        <input
-                            id="email"
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required
-                        />
-                    </div>
-
-                    {/* Поле для телефона */}
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-                            Your phone:
-                        </label>
-                        <input
-                            id="phone"
-                            type="text"
-                            name="phone"
-                            placeholder="+7 999 999 99 99"
-                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required
-                        />
-                    </div>
-
-                    {/* Поле для сообщения */}
                     <div>
                         <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                             Your message:
@@ -74,13 +113,14 @@ export function ContactForm() {
                             name="message"
                             placeholder="Write your message. Max length of 500 characters"
                             maxLength={500}
+                            value={formData.message}
+                            onChange={handleChange}
                             className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
                             rows={5}
                             required
                         />
                     </div>
 
-                    {/* Кнопка отправки */}
                     <div className="flex justify-center">
                         <button
                             type="submit"
@@ -90,7 +130,6 @@ export function ContactForm() {
                         </button>
                     </div>
 
-                    {/* Сообщение об успешной отправке */}
                     <Transition
                         show={isSubmitted}
                         enter="transition-opacity duration-300"
