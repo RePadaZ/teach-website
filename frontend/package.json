@@ -22,10 +22,12 @@
     "@teach-website/backend": "workspace:*",
     "@trpc/client": "^10.45.2",
     "@trpc/react-query": "^10.45.2",
+    "formik": "^2.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
-    "tailwindcss": "^4.0.6"
+    "tailwindcss": "^4.0.6",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

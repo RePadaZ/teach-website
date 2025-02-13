@@ -1,7 +1,10 @@
-import { useState, useCallback, useReducer, useEffect } from "react";
-import { Transition } from "@headlessui/react";
+import {Form, Formik} from "formik";
+import * as Yup from "yup";
+import {Transition} from "@headlessui/react";
+import {useState} from "react";
+import {FieldFom} from "../../components/field/FieldFom.tsx";
 
-// Типы для формы
+// Определяем типы для данных формы
 interface FormState {
     name: string;
     email: string;
@@ -9,70 +12,26 @@ interface FormState {
     message: string;
 }
 
-// Инициализация формы
-const initialFormState: FormState = {
+// Начальные значения формы
+const initialValues: FormState = {
     name: "",
     email: "",
     phone: "",
     message: "",
 };
 
-// Редюсер для управления формой
-function formReducer(state: FormState, action: { type: string; payload: string }) {
-    return { ...state, [action.type]: action.payload };
-}
+// Схема валидации с использованием Yup
+const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Please fill in your name."),
+    email: Yup.string()
+        .email("Invalid email address.")
+        .required("Please fill in your email."),
+    message: Yup.string().required("Please fill in your message."),
+});
 
 export function ContactForm() {
-    // Управление состоянием формы через useReducer
-    const [formData, dispatch] = useReducer(formReducer, initialFormState);
-
     // Состояние для отображения сообщения об успешной отправке
     const [isSubmitted, setIsSubmitted] = useState(false);
-
-    // Универсальный обработчик изменений
-    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        dispatch({ type: name, payload: value });
-    }, []);
-
-    // Валидация формы
-    const validateForm = () => {
-        const { name, email, message } = formData;
-        if (!name || !email || !message) {
-            alert("Please fill in all required fields.");
-            return false;
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            alert("Please enter a valid email address.");
-            return false;
-        }
-        return true;
-    };
-
-    // Обработчик отправки формы
-    const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-         e.preventDefault();
-
-        if (!validateForm()) return;
-
-        console.log("Form Data:", formData);
-
-        // Очистка полей формы
-        Object.keys(initialFormState).forEach((key) =>
-            dispatch({ type: key, payload: "" })
-        );
-
-        // Отображение сообщения
-        setIsSubmitted(true);
-    }, [formData]);
-
-    // Автоматическое скрытие сообщения об успешной отправке
-    useEffect(() => {
-        if (isSubmitted) {
-            const timer = setTimeout(() => setIsSubmitted(false), 3000);
-            return () => clearTimeout(timer);
-        }
-    }, [isSubmitted]);
 
     return (
         <div className="min-h-screen bg-gray-900 flex items-center justify-center p-6">
@@ -80,70 +39,72 @@ export function ContactForm() {
                 <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">
                     Send us a Message
                 </h2>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={(values, { resetForm }) => {
+                        // Здесь можно отправить данные на сервер
+                        console.log("Form Data:", values);
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    {[
-                        { id: "name", type: "text", label: "First name", placeholder: "Name", required: true },
-                        { id: "email", type: "email", label: "Your email", placeholder: "Email", required: true },
-                        { id: "phone", type: "text", label: "Your phone (optional)", placeholder: "+7 999 999 99 99", required: false }
-                    ].map(({ id, type, label, placeholder, required }) => (
-                        <div key={id}>
-                            <label htmlFor={id} className="block text-sm font-medium text-gray-300 mb-2">
-                                {label}:
-                            </label>
-                            <input
-                                id={id}
-                                type={type}
-                                name={id}
-                                placeholder={placeholder}
-                                value={formData[id as keyof FormState] || ""}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                required={required}
+                        // Сброс формы
+                        resetForm();
+
+                        // Показываем сообщение об успешной отправке
+                        setIsSubmitted(true);
+                        setTimeout(() => setIsSubmitted(false), 3000);
+                    }}
+                >
+                    {() => (
+                        <Form className="space-y-6">
+                            <FieldFom label="First name:" id="name" name="name" placeholder="Name" />
+                            <FieldFom
+                                label="Your email:"
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="Email"
                             />
-                        </div>
-                    ))}
+                            <FieldFom
+                                label="Your phone (optional):"
+                                id="phone"
+                                name="phone"
+                                placeholder="+7 999 999 99 99"
+                            />
+                            <FieldFom
+                                label="Your message:"
+                                id="message"
+                                name="message"
+                                placeholder="Write your message. Max length of 500 characters"
+                                textarea
+                                maxLength={500}
+                                rows={5}
+                            />
 
-                    <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                            Your message:
-                        </label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            placeholder="Write your message. Max length of 500 characters"
-                            maxLength={500}
-                            value={formData.message}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
-                            rows={5}
-                            required
-                        />
-                    </div>
+                            <div className="flex justify-center">
+                                <button
+                                    type="submit"
+                                    className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                                >
+                                    Send Message
+                                </button>
+                            </div>
 
-                    <div className="flex justify-center">
-                        <button
-                            type="submit"
-                            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                        >
-                            Send Message
-                        </button>
-                    </div>
-
-                    <Transition
-                        show={isSubmitted}
-                        enter="transition-opacity duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="transition-opacity duration-300"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                    >
-                        <p className="text-center text-green-400 mt-4">
-                            Thanks for your feedback!
-                        </p>
-                    </Transition>
-                </form>
+                            <Transition
+                                show={isSubmitted}
+                                enter="transition-opacity duration-300"
+                                enterFrom="opacity-0"
+                                enterTo="opacity-100"
+                                leave="transition-opacity duration-300"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                            >
+                                <p className="text-center text-green-400 mt-4">
+                                    Thanks for your feedback!
+                                </p>
+                            </Transition>
+                        </Form>
+                    )}
+                </Formik>
             </div>
         </div>
     );
