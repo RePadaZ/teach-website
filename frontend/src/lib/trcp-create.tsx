@@ -1,5 +1,6 @@
 import {createTRPCReact} from "@trpc/react-query";
-import type {TRPC_ROUTER} from "@teach-website/backend/src/trpc.ts";
+import type {TRPC_ROUTER} from "@teach-website/backend/src/trpc/Router.ts";
+
 
 /*
  Так как это отдельный команет React мы его создаем в отдельном файле
