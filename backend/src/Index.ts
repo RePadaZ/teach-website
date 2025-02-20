@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import {TRPC_ROUTER} from "./trpc";
+import {TRPC_ROUTER} from "./trpc/Router";
 
 
 // Создаем приложения Express
