@@ -1,7 +1,7 @@
-import { Transition } from '@headlessui/react';
+import {Transition} from '@headlessui/react';
 import ImgPointer from '../../assets/pointer.svg';
-import { TRPC } from "../../lib/trcp-create.tsx";
 import {Cards} from "../../components/cards/Cards.tsx";
+import {mainCards} from "../../components/data-components/DataComponents.tsx";
 
 const scrollToSection = () => {
     const section = document.getElementById('next-section');
@@ -11,21 +11,13 @@ const scrollToSection = () => {
 };
 
 export function Main() {
-    const { data, error, isLoading, isFetching, isError } = TRPC.getMainCards.useQuery();
-
-    if (isError) {
-        return <span className="text-red-500">{error.message}</span>;
-    }
-    if (isLoading || isFetching) {
-        return <span className="text-blue-500">Loading...</span>;
-    }
 
     return (
         <div className="min-h-screen bg-gray-900">
             {/* Hero Section */}
             <div className="relative min-h-screen overflow-hidden">
                 <img
-                    src="mainBackGround.jpg"
+                    src={"mainBackGround.jpg"}
                     alt="Background"
                     className="w-full h-full object-cover absolute inset-0 opacity-50"
                 />
@@ -82,7 +74,7 @@ export function Main() {
                 <div className="w-full text-center">
                     <h2 className="text-4xl font-bold text-white mb-12">Sections available for study</h2>
                 </div>
-                {data.mainCards.map((card, index) => (
+                {mainCards.map((card, index) => (
                     <Cards index={index} title={card.title} text={card.text} href={card.href} button={card.button} />
                     ))}
             </div>

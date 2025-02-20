@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Transition } from "@headlessui/react";
+import {useState} from "react";
+import {Transition} from "@headlessui/react";
 
 export function Sign() {
     const [login, setLogin] = useState("");

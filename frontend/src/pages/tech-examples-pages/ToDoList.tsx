@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import { Transition } from "@headlessui/react";
+import {useCallback, useState} from "react";
+import {Transition} from "@headlessui/react";
 
 interface ToDo {
     id: number;
