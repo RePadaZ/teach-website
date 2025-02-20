@@ -9,7 +9,6 @@ export function Footer() {
                     <p>Email: example@email.com</p>
                     <a
                         href="/contact"
-                        target="_blank"
                         className="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition"
                     >
                         Contact Form
