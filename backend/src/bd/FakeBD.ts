@@ -1,6 +1,6 @@
 // export const cards= [
 //     { id: 1, image: 'https://placehold.co/400', title: 'Clock.', href: '/tech-examples/clock', text: 'Clock in JavaScript.' },
-//     { id: 2, image: 'https://placehold.co/400', title: 'ToDoList.', href: '/tech-examples/todolist', text: 'ToDo list in JavaScript.' },
+//      { id: 2, image: 'https://placehold.co/400', title: 'ToDoList.', href: '/tech-examples/todolist', text: 'ToDo list in JavaScript.' },
 //     { id: 3, image: 'https://placehold.co/400', title: 'Clock.', href: '/tech-examples/clock', text: 'Clock in JavaScript.' },
 //     { id: 4, image: 'https://placehold.co/400', title: 'Clock.', href: '/tech-examples/clock', text: 'Clock in JavaScript.' },
 // ];
