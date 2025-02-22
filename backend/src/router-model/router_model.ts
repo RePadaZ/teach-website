@@ -1,6 +1,7 @@
-import { z } from "zod";
-import {TRPC} from "../trpc/InitTRPC";
+import {z} from "zod";
+import {TRPC} from "../trpc/init_trpc";
 
+// Валидация формы с использованием zod
 const contactSchema = z.object({
     name: z.string().min(1),
     email: z.string().email(),
