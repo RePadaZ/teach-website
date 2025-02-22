@@ -22,7 +22,8 @@ void (async () => {
         // Создаем endpoint для TRPC который будет обрабатывать все наши endpoint
         expressApp.use("/", trpcExpress.createExpressMiddleware({
             router: TRPC_ROUTER,
-        }))
+            createContext: CreateAppContext,
+    }))
 
         // Включаем прослушку 8080 порта для нашего сервера
         expressApp.listen(8080, () => {
@@ -32,5 +33,4 @@ void (async () => {
         console.log(err);
         await ctx?.stop()
     }
-
 })()
