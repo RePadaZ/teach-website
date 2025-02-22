@@ -1,7 +1,7 @@
 import {Transition} from '@headlessui/react';
 import ImgPointer from '../../assets/pointer.svg';
-import {Cards} from "../../components/cards/Cards.tsx";
-import {mainCards} from "../../components/data-components/DataComponents.tsx";
+import {Cards} from "../../components/cards/cards.tsx";
+import {mainCards} from "../../components/data-components/data_components.tsx";
 
 const scrollToSection = () => {
     const section = document.getElementById('next-section');

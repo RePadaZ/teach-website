@@ -17,7 +17,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
-    "@tailwindcss/vite": "^4.0.6",
+    "@tailwindcss/vite": "^4.0.8",
     "@tanstack/react-query": "^4.36.1",
     "@teach-website/backend": "workspace:*",
     "@trpc/client": "^10.45.2",
@@ -25,20 +25,20 @@
     "formik": "^2.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.1.1",
-    "tailwindcss": "^4.0.6",
+    "react-router-dom": "^7.2.0",
+    "tailwindcss": "^4.0.8",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.15.0",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.12.0",
-    "typescript-eslint": "^8.15.0",
-    "vite": "^6.0.1"
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.1.1"
   }
 }

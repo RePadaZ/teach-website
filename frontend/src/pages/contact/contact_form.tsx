@@ -1,9 +1,9 @@
-import { Form, Formik } from "formik";
+import {Form, Formik} from "formik";
 import * as Yup from "yup";
-import { Transition } from "@headlessui/react";
-import { useState } from "react";
-import { FieldFom } from "../../components/field/FieldFom.tsx";
-import { TRPC } from "../../lib/trcp-create.tsx";
+import {Transition} from "@headlessui/react";
+import {useState} from "react";
+import {FieldForm} from "../../components/field/field_form.tsx";
+import {TRPC} from "../../lib/trcp_create.tsx";
 
 // Схема валидации формы
 const contactSchema = Yup.object().shape({
@@ -32,20 +32,21 @@ export function ContactForm() {
                 <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">Send us a Message</h2>
 
                 <Formik
-                    initialValues={{ name: "", email: "", phone: "", message: "" }}
+                    initialValues={{name: "", email: "", phone: "", message: ""}}
                     validationSchema={contactSchema}
                     // Передаем данные на сервер для обработки
-                    onSubmit={async (values, { resetForm }) => {
+                    onSubmit={async (values, {resetForm}) => {
                         await mutation.mutateAsync(values);
                         if (!mutation.isError) resetForm();
                     }}
                 >
-                    {({ isSubmitting }) => (
+                    {({isSubmitting}) => (
                         <Form className="space-y-6">
-                            <FieldFom label="First name:" id="name" name="name" placeholder="Name" />
-                            <FieldFom label="Your email:" id="email" name="email" type="email" placeholder="Email" />
-                            <FieldFom label="Your phone (optional):" id="phone" name="phone" placeholder="+7 999 999 99 99" />
-                            <FieldFom
+                            <FieldForm label="First name:" id="name" name="name" placeholder="Name"/>
+                            <FieldForm label="Your email:" id="email" name="email" type="email" placeholder="Email"/>
+                            <FieldForm label="Your phone (optional):" id="phone" name="phone"
+                                        placeholder="+7 999 999 99 99"/>
+                            <FieldForm
                                 label="Your message:"
                                 id="message"
                                 name="message"
@@ -66,7 +67,8 @@ export function ContactForm() {
                             </div>
 
                             {mutation.isError && (
-                                <p className="text-center text-red-400 mt-4">Error submitting form. Please try again.</p>
+                                <p className="text-center text-red-400 mt-4">Error submitting form. Please try
+                                    again.</p>
                             )}
 
                             <Transition

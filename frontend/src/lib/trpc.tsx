@@ -1,4 +1,4 @@
-import {TRPC} from "./trcp-create.tsx";
+import {TRPC} from "./trcp_create.tsx";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import React from "react";
 import {httpBatchLink} from "@trpc/client";
