@@ -7,19 +7,28 @@
   "strictNullChecks": true,
   "isolatedModules": false,
   "scripts": {
-    "dev": "ts-node-dev --rs src/Index.ts",
+    "dev": "ts-node-dev --rs --exit-child src/index.ts",
     "build": "rimraf dist && tsc --build tsconfig.json",
     "start": "node dist/index.js",
-    "types": "tsc --noEmit --project tsconfig.json"
+    "types": "tsc --noEmit --project tsconfig.json",
+    "pmd": "prisma migrate dev",
+    "pgt": "prisma generate type",
+    "prepare": "pnpm pgt"
+  },
+  "prisma":{
+    "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "^6.4.1",
     "@trpc/server": "^10.45.2",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "prisma": "^6.4.1",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0"

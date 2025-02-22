@@ -1,5 +1,5 @@
 import {createTRPCReact} from "@trpc/react-query";
-import type {TRPC_ROUTER} from "@teach-website/backend/src/trpc/Router.ts";
+import type {TRPC_ROUTER} from "@teach-website/backend/src/trpc/router.ts";
 
 
 /*

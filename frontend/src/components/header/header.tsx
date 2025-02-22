@@ -1,7 +1,7 @@
 import {Menu, Transition} from "@headlessui/react";
 import {Fragment} from "react";
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
-import {header} from "../data-components/DataComponents.tsx";
+import {header} from "../data-components/data_components.tsx";
 
 export function Header() {
 

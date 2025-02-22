@@ -1,5 +1,5 @@
-import {ImageCards} from "../../components/image-cards/imageCards.tsx";
-import {cards} from "../../components/data-components/DataComponents.tsx";
+import {ImageCards} from "../../components/image-cards/image_cards.tsx";
+import {cards} from "../../components/data-components/data_components.tsx";
 
 export function TechExamples() {
 

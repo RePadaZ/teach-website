@@ -1,5 +1,5 @@
-import {TRPC} from "./InitTRPC";
-import {CreateContactForm} from "../router-model/RouterModel";
+import {TRPC} from "./init_trpc";
+import {CreateContactForm} from "../router-model/router_model";
 
 // Создаем роуетер для наших запросов
 export const TRPC_ROUTER = TRPC.router({

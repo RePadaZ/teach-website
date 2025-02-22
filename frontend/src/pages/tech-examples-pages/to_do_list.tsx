@@ -18,7 +18,7 @@ export function ToDoList() {
 
         setTasks((prevTasks) => [
             ...prevTasks,
-            { id: Date.now(), text: trimmedTask, completed: false },
+            {id: Date.now(), text: trimmedTask, completed: false},
         ]);
         setNewTask("");
     }, [newTask]);
@@ -26,13 +26,13 @@ export function ToDoList() {
     // Универсальное обновление задач
     const updateTask = useCallback((id: number, changes: Partial<ToDo>) => {
         setTasks((prevTasks) =>
-            prevTasks.map((task) => (task.id === id ? { ...task, ...changes } : task))
+            prevTasks.map((task) => (task.id === id ? {...task, ...changes} : task))
         );
     }, []);
 
     // Переключение состояния задачи
     const toggleTaskCompletion = useCallback(
-        (id: number) => updateTask(id, { completed: !tasks.find((t) => t.id === id)?.completed }),
+        (id: number) => updateTask(id, {completed: !tasks.find((t) => t.id === id)?.completed}),
         [tasks, updateTask]
     );
 
@@ -67,7 +67,7 @@ export function ToDoList() {
 
                 {/* Список задач */}
                 <div className="space-y-3">
-                    {tasks.map(({ id, text, completed }) => (
+                    {tasks.map(({id, text, completed}) => (
                         <Transition
                             key={id}
                             appear={true}
@@ -76,7 +76,8 @@ export function ToDoList() {
                             enterFrom="opacity-0"
                             enterTo="opacity-100"
                         >
-                            <div className="flex justify-between items-center p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                            <div
+                                className="flex justify-between items-center p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                                 {/* Текст задачи */}
                                 <span
                                     onClick={() => toggleTaskCompletion(id)}

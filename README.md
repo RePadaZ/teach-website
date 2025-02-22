@@ -11,9 +11,9 @@
 ## Технологии
 
 
-- **Frontend**: React, React-Bootstrap, TypeScript
-- **Backend**: Node.js, Express
-- **База данных**: MongoDB
+- **Frontend**: [React](https://nodejs.org/en), [Tailwind CSS](https://tailwindcss.com/), [TypeScript](https://www.typescriptlang.org/), [Formik](https://formik.org/), [Yup](https://github.com/jquense/yup), [Eslint](https://eslint.org)
+- **Backend**: [Node.js](https://react.dev/), [Express](https://expressjs.com/), [Cors](https://github.com/expressjs/cors), [Zod](https://zod.dev/), [Rimraf](https://github.com/isaacs/rimraf)
+- **База данных**: [PostgreSQL](https://www.postgresql.org/)
 
 ## Установка
 
@@ -26,21 +26,20 @@
 2. Установите зависимости для фронтенда и бэкенда:
 
    ```bash
-   cd teach-website/frontend
+    # В директории проекта
+   cd backend
    pnpm install
-   cd ./backend/
+   cd frontend
    pnpm install
-   cd ./frontend/
+   # В общей деректории проекта
    pnpm install
-   
    ```
 
-3Запустите сервер и клиент:
+3. Запустите сервер и клиент:
 
    ```bash
    # В директории проекта
-   pnpm f dev
-   pnpm b dev
+   pnpm -r -parallel dev
    ```
 
 ## Вклад в проект

@@ -1,6 +1,6 @@
 import {ErrorMessage, Field} from "formik";
 
-export const FieldFom = ({
+export const FieldForm = ({
                              label,
                              id,
                              name,
