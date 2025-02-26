@@ -90,9 +90,9 @@ export function OneCBaseMain() {
                     </li>
                 </ul>
                 {/* Кнопка перехода на следующую страницу */}
-                <div className="flex justify-end p-4">
+                <div className="flex justify-end p-4 pt-15">
                     <a
-                        href="/OneCBaseFundamentals"
+                        href="/1C-Base/OneCBaseFundamentals"
                         className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors text-white font-bold"
                     >
                         Продолжить
