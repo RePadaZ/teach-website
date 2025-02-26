@@ -29,7 +29,6 @@ export function OneCBaseFundamentals() {
                         </p>
                     </li>
                 </ul>
-
                 {/* Разрыв */}
                 <hr className="my-4 border-gray-300"/>
 
