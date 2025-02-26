@@ -29,7 +29,7 @@ export const App = () => {
                     <Route path={'/tech-examples/todolist'} element={<ToDoList/>}/>
                     <Route path={'/contact'} element={<ContactForm/>}/>
                     <Route path={'/1C-Base'} element={<OneCBaseMain/>}/>
-                    <Route path={'/OneCBaseFundamentals'} element={<OneCBaseFundamentals/>}/>
+                    <Route path={'/1C-Base/OneCBaseFundamentals'} element={<OneCBaseFundamentals/>}/>
                 </Routes>
             </BrowserRouter>
             <Footer/>
