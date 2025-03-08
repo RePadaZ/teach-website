@@ -1,5 +1,5 @@
-import {z} from "zod";
 import {TRPC} from "../trpc/init_trpc";
+import {z} from "zod";
 
 // Валидация формы с использованием zod
 const contactSchema = z.object({
@@ -23,19 +23,14 @@ const contactSchema = z.object({
         .trim(),
 });
 
-export const CreateContactForm = TRPC.procedure.input(contactSchema).mutation(async ({ input, ctx }) => {
-    // Здесь можно обработать форму, например, отправить email или сохранить в базу
-    console.log("Received contact form:", input);
-
+export const CreateContactForm = TRPC.procedure.input(contactSchema).mutation(async ({input, ctx}) => {
     try {
         await ctx.prisma.contactInfo.create({
             data: input,
         })
-
-        return { success: true };
+        return {success: true};
     } catch (err) {
         console.error(err);
         throw new Error("Failed to submit the form. Please try again later.");
     }
-
 });
