@@ -1,7 +1,7 @@
 import {z} from "zod";
 import {TRPC} from "../trpc/init_trpc";
-import * as crypto from "node:crypto";
 import {TRPCError} from "@trpc/server";
+import {cryptoPassword, SignJWT} from "../public_model/utils";
 
 const userSchema = z.object({
     login: z.string()
@@ -13,11 +13,6 @@ const userSchema = z.object({
     password: z.string().min(8, "password must be at least 8 characters long"),
     agreeTerms: z.boolean().refine(() => true),
 });
-
-// Функция для шифрования пароля
-function cryptoPassword(password: string): string {
-    return crypto.createHash("md5").update(password).digest("hex");
-}
 
 export const CreateUserForm = TRPC.procedure.input(userSchema).mutation(async ({input, ctx}) => {
     try {
@@ -50,13 +45,16 @@ export const CreateUserForm = TRPC.procedure.input(userSchema).mutation(async ({
         }
 
         // Создаём пользователя
-        await ctx.prisma.user.create({
+        const newUser = await ctx.prisma.user.create({
             data: {
                 login: input.login,
                 email: input.email,
                 password: cryptoPassword(input.password),
             },
         });
+
+        const token = SignJWT(newUser.id)
+        return {token};
 
     } catch (err) {
 

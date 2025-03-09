@@ -1,7 +1,7 @@
 import {z} from "zod";
 import {TRPC} from "../trpc/init_trpc";
-import * as crypto from "node:crypto";
 import {TRPCError} from "@trpc/server";
+import {cryptoPassword, SignJWT} from "../public_model/utils";
 
 const userSchema = z.object({
     login: z.string()
@@ -11,11 +11,6 @@ const userSchema = z.object({
         .trim(),
     password: z.string().min(8, "password must be at least 8 characters long"),
 });
-
-// Функция для шифрования пароля
-function cryptoPassword(password: string): string {
-    return crypto.createHash("md5").update(password).digest("hex");
-}
 
 export const LoginUserForm = TRPC.procedure.input(userSchema).mutation(async ({input, ctx}) => {
     try {
@@ -40,6 +35,8 @@ export const LoginUserForm = TRPC.procedure.input(userSchema).mutation(async ({i
             });
         }
 
+        const token = SignJWT(exUser.id)
+        return {token};
 
     } catch (err) {
 
