@@ -1,5 +1,3 @@
-
-
 export function Footer() {
     return (
         <footer className="bg-gray-900 text-white py-6">
@@ -38,7 +36,7 @@ export function Footer() {
                             Discord
                         </a>
                         <a
-                            href="#"
+                            href="https://github.com/RePadaZ?tab=repositories"
                             target="_blank"
                             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition"
                         >
