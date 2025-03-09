@@ -3,6 +3,7 @@ import {Transition} from "@headlessui/react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {TRPC} from "../../lib/trcp_create.tsx";
+import Cookies from "js-cookie";
 
 /* Схема валидации формы */
 const validationSchema = Yup.object({
@@ -50,8 +51,9 @@ export function Login() {
                         validationSchema={validationSchema}
                         onSubmit={async (values, {resetForm}) => {
                             setServerError(null);
-                            await mutation.mutateAsync(values);
-                            if (!mutation.isError) resetForm();
+                            const {token} = await mutation.mutateAsync(values);
+                            if (mutation.isSuccess) resetForm();
+                            Cookies.set("token", token, {expires: 99999});
                         }}
                     >
                         {({isSubmitting}) => (

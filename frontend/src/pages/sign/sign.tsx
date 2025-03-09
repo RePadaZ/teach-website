@@ -59,7 +59,7 @@ export function Sign() {
                         onSubmit={async (values, {resetForm}) => {
                             setServerError(null);
                             await mutation.mutateAsync(values);
-                            if (!mutation.isError) resetForm();
+                            if (mutation.isSuccess) resetForm();
                         }}
                     >
                         {({isSubmitting}) => (
