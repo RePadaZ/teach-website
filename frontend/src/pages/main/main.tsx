@@ -6,12 +6,11 @@ import {mainCards} from "../../components/data-components/data_components.tsx";
 const scrollToSection = () => {
     const section = document.getElementById('next-section');
     if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+        section.scrollIntoView({behavior: 'smooth'});
     }
 };
 
 export function Main() {
-
     return (
         <div className="min-h-screen bg-gray-900">
             {/* Hero Section */}
@@ -21,7 +20,8 @@ export function Main() {
                     alt="Background"
                     className="w-full h-full object-cover absolute inset-0 opacity-50"
                 />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
+                <div
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
                     <Transition
                         appear={true}
                         show={true}
@@ -40,7 +40,7 @@ export function Main() {
                     >
                         <h3 className="text-2xl mb-6">
                             You will find many useful resources here,
-                            <br />including articles, lessons, code examples, and practical assignments.
+                            <br/>including articles, lessons, code examples, and practical assignments.
                         </h3>
                     </Transition>
                     <Transition
@@ -62,7 +62,7 @@ export function Main() {
                     onClick={scrollToSection}
                     className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer focus:outline-none"
                 >
-                    <img src={ImgPointer} alt="pointer" className="animate-bounce h-20 w-20" />
+                    <img src={ImgPointer} alt="pointer" className="animate-bounce h-20 w-20"/>
                 </button>
             </div>
 
@@ -75,8 +75,8 @@ export function Main() {
                     <h2 className="text-4xl font-bold text-white mb-12">Sections available for study</h2>
                 </div>
                 {mainCards.map((card, index) => (
-                    <Cards index={index} title={card.title} text={card.text} href={card.href} button={card.button} />
-                    ))}
+                    <Cards index={index} title={card.title} text={card.text} href={card.href} button={card.button}/>
+                ))}
             </div>
         </div>
     );

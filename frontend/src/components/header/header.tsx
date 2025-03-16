@@ -2,8 +2,11 @@ import {Menu, Transition} from "@headlessui/react";
 import {Fragment} from "react";
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
 import {header} from "../data-components/data_components.tsx";
+import {TRPC} from "../../lib/trcp_create.tsx";
 
 export function Header() {
+    const {data, isLoading, isFetching, isError} = TRPC.GetMe.useQuery()
+
 
     return (
         <header className="bg-gray-900 text-white w-full px-6 py-4 shadow-lg z-50 relative">
@@ -51,13 +54,28 @@ export function Header() {
                     ))}
                 </nav>
 
-                {/* Login Button */}
-                <a
-                    href="/login"
-                    className="hidden lg:inline-block px-8 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition shadow-lg"
-                >
-                    Login / Sign Up
-                </a>
+                {/* Кнопки для регистрации, авторизации или выхода */}
+                {isLoading || isFetching || isError ? null : data.me ? (
+                    <>
+                        {/* Log Out Button */}
+                        <a
+                            href="/exit"
+                            className="hidden lg:inline-block px-8 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition shadow-lg"
+                        >
+                            Log Out
+                        </a>
+                    </>
+                ) : (
+                    <>
+                        {/* Login Button */}
+                        <a
+                            href="/login"
+                            className="hidden lg:inline-block px-8 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition shadow-lg"
+                        >
+                            Login / Sign Up
+                        </a>
+                    </>
+                )}
             </div>
         </header>
     );
