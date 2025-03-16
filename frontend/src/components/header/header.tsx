@@ -5,7 +5,7 @@ import {header} from "../data-components/data_components.tsx";
 import {TRPC} from "../../lib/trcp_create.tsx";
 
 export function Header() {
-    const {data, isLoading, isFetching, isError} = TRPC.GetMe.useQuery()
+    const {data} = TRPC.GetMe.useQuery()
 
 
     return (
@@ -55,26 +55,20 @@ export function Header() {
                 </nav>
 
                 {/* Кнопки для регистрации, авторизации или выхода */}
-                {isLoading || isFetching || isError ? null : data.me ? (
-                    <>
-                        {/* Log Out Button */}
-                        <a
-                            href="/exit"
-                            className="hidden lg:inline-block px-8 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition shadow-lg"
-                        >
-                            Log Out
-                        </a>
-                    </>
+                {data?.me ? (
+                    <a
+                        href="/LogOut"
+                        className="hidden lg:inline-block px-8 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition shadow-lg"
+                    >
+                        Log Out
+                    </a>
                 ) : (
-                    <>
-                        {/* Login Button */}
-                        <a
-                            href="/login"
-                            className="hidden lg:inline-block px-8 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition shadow-lg"
-                        >
-                            Login / Sign Up
-                        </a>
-                    </>
+                    <a
+                        href="/login"
+                        className="hidden lg:inline-block px-8 py-3 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition shadow-lg"
+                    >
+                        Login / Sign Up
+                    </a>
                 )}
             </div>
         </header>
