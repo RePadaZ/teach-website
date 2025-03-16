@@ -16,13 +16,18 @@ export function Login() {
 
     // navigate для переадресации
     const navigate = useNavigate();
+    
     // Ошибки с сервера
     const [serverError, setServerError] = useState<string | null>(null);
+
+    // Вызов TRPC utils для сброса валидации даныых и перезапроса их на севере
+    const trpcUtils = TRPC.useUtils();
 
     const mutation = TRPC.LoginUserForm.useMutation({
         onSuccess: ({token}) => {
             setServerError(null);
             Cookies.set("token", token, {expires: 99999});
+            trpcUtils.invalidate();
             navigate("/");
         },
         onError: (error) => setServerError(error.message),

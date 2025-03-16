@@ -11,6 +11,7 @@ import {ToDoList} from "./pages/tech-examples-pages/to_do_list.tsx";
 import {ContactForm} from "./pages/contact/contact_form.tsx";
 import {OneCBaseMain} from "./pages/1C/one_c_base_main.tsx";
 import {OneCBaseFundamentals} from "./pages/1C/one_c_base_fundamentals.tsx"
+import {LogOut} from "./pages/LogOut.tsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 
@@ -30,6 +31,7 @@ export const App = () => {
                     <Route path={'/contact'} element={<ContactForm/>}/>
                     <Route path={'/1C-Base'} element={<OneCBaseMain/>}/>
                     <Route path={'/1C-Base/OneCBaseFundamentals'} element={<OneCBaseFundamentals/>}/>
+                    <Route path={'/LogOut'} element={<LogOut/>}/>
                 </Routes>
             </BrowserRouter>
             <Footer/>
