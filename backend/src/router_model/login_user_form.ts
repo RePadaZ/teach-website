@@ -1,7 +1,7 @@
 import {z} from "zod";
 import {TRPC} from "../trpc/init_trpc";
 import {TRPCError} from "@trpc/server";
-import {cryptoPassword, SignJWT} from "../public_model/utils";
+import {cryptoPassword, SignJWT} from "../util_module/utils";
 
 const userSchema = z.object({
     login: z.string()
