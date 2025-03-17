@@ -3,6 +3,8 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {TRPC} from "../../lib/trcp_create.tsx";
 import {useState} from "react";
+import Cookies from "js-cookie";
+import {useNavigate} from "react-router-dom";
 
 
 /* Схема валидации формы */
@@ -18,20 +20,31 @@ const validationSchema = Yup.object({
 
 export function Sign() {
 
+    const navigate = useNavigate();
     /* Отображение надписи */
-    const [serverError, setServerError] = useState<string | null>(null);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [serverError, setServerError] = useState<string | null>(null)
 
+    // Вызов TRPC utils для сброса валидации даныых и перезапроса их на севере
+    const trpcUtils = TRPC.useUtils();
+    
     const mutation = TRPC.CreateUserForm.useMutation({
-        onSuccess: () => {
-            setIsSubmitted(true);
+        onSuccess: ({token}) => {
             setServerError(null);
-            setTimeout(() => setIsSubmitted(false), 3000); // Скрываем сообщение через 3 сек
+            Cookies.set("token", token, {expires: 99999});
+            trpcUtils.invalidate();
+            navigate("/");
         },
-        onError: (error) => {
-            setServerError(error.message);
-        },
+        onError: (error) => setServerError(error.message),
     });
+
+    const handleSubmit = async (values: { login: string; email: string; password: string, agreeTerms: boolean }) => {
+        setServerError(null);
+        try {
+            await mutation.mutateAsync(values);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-gray-900 flex items-center justify-center p-6">
@@ -56,11 +69,7 @@ export function Sign() {
                             agreeTerms: false,
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={async (values, {resetForm}) => {
-                            setServerError(null);
-                            await mutation.mutateAsync(values);
-                            if (mutation.isSuccess) resetForm();
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         {({isSubmitting}) => (
                             <Form className="space-y-6">
@@ -150,26 +159,15 @@ export function Sign() {
                                         Register
                                     </button>
                                 </div>
-
+                                {/* Ссылка на логин */}
                                 <p className="text-center text-gray-400">
                                     Have already an account? {" "}
                                     <a href="/login" className="text-blue-400 hover:text-blue-300 underline">
                                         Login here
                                     </a>
                                 </p>
-                                {/* Выводим сообщеение об успешной регистрации */}
-                                <Transition
-                                    show={isSubmitted}
-                                    enter="transition-opacity duration-300"
-                                    enterFrom="opacity-0"
-                                    enterTo="opacity-100"
-                                    leave="transition-opacity duration-300"
-                                    leaveFrom="opacity-100"
-                                    leaveTo="opacity-0"
-                                >
-                                    <p className="text-center text-green-400 mt-4">Thanks for your feedback!</p>
-                                </Transition>
 
+                                {/* Ошибка сервера */}
                                 {serverError && (
                                     <Transition
                                         show={true}

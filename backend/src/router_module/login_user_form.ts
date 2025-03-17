@@ -1,13 +1,13 @@
 import {z} from "zod";
 import {TRPC} from "../trpc/init_trpc";
 import {TRPCError} from "@trpc/server";
-import {cryptoPassword, SignJWT} from "../public_model/utils";
+import {cryptoPassword, SignJWT} from "../util_module/utils";
 
 const userSchema = z.object({
     login: z.string()
         .min(1, "Name is required")
         .max(100, "Name is too long")
-        .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces")
+        .regex(/^(?!\s*$)/, "Login cannot be only spaces and must contain letters.")
         .trim(),
     password: z.string().min(8, "password must be at least 8 characters long"),
 });

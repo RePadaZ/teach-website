@@ -2,6 +2,7 @@ import {TRPC} from "./trcp_create.tsx";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import React from "react";
 import {httpBatchLink} from "@trpc/client";
+import Cookies from "js-cookie";
 
 /*
 React query которая упрвляет логикой запросов а не типами
@@ -25,12 +26,18 @@ const TRPC_CLIENT = TRPC.createClient({
     links: [
         httpBatchLink({
             url: "http://localhost:8080",
+            headers: () => {
+                const token = Cookies.get("token");
+                return {
+                    ...(token && {authorization: `Bearer ${token}`}),
+                }
+            }
         }),
     ],
 })
 
 // Обработчик TRPC для наших данных
-export const TRPC_PROVIDER = ({children} : {children: React.ReactNode}) => {
+export const TRPC_PROVIDER = ({children}: { children: React.ReactNode }) => {
     return (
         <TRPC.Provider client={TRPC_CLIENT} queryClient={QUERY_CLIENT}>
             <QueryClientProvider client={QUERY_CLIENT}>{children}</QueryClientProvider>

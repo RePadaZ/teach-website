@@ -3,6 +3,8 @@ import cors from "cors";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import {TRPC_ROUTER} from "./trpc/router";
 import {AppContext, CreateAppContext} from "./ctx/ctx";
+import {applyPassportToExpress} from "./lib/passport";
+import {getCreateTrPC} from "./trpc/init_trpc";
 
 
 // Обертка в async если для дожидания завершения процессов
@@ -19,11 +21,13 @@ void (async () => {
         // Используем cors для того чтоб решить проблему запросов с клиета на наш сервер
         expressApp.use(cors());
 
+        applyPassportToExpress(expressApp, ctx)
+
         // Создаем endpoint для TRPC который будет обрабатывать все наши endpoint
         expressApp.use("/", trpcExpress.createExpressMiddleware({
             router: TRPC_ROUTER,
-            createContext: CreateAppContext,
-    }))
+            createContext: getCreateTrPC(ctx),
+        }))
 
         // Включаем прослушку 8080 порта для нашего сервера
         expressApp.listen(8080, () => {
