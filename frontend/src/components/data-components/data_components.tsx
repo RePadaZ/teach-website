@@ -2,72 +2,72 @@ export const cards = [
     {
         id: 1,
         image: 'https://placehold.co/400',
-        title: 'Clock.',
+        title: 'Часы.',
         href: '/tech-examples/clock',
-        text: 'Clock in JavaScript.'
+        text: 'Часы на JavaScript.'
     },
     {
         id: 2,
         image: 'https://placehold.co/400',
-        title: 'ToDoList.',
+        title: 'ToDo list.',
         href: '/tech-examples/todolist',
-        text: 'ToDo list in JavaScript.'
+        text: 'ToDo list на JavaScript.'
     },
     {
         id: 3,
         image: 'https://placehold.co/400',
-        title: 'Clock.',
+        title: 'Часы.',
         href: '/tech-examples/clock',
-        text: 'Clock in JavaScript.'
+        text: 'Часы на JavaScript.'
     },
     {
         id: 4,
         image: 'https://placehold.co/400',
-        title: 'Clock.',
+        title: 'Часы.',
         href: '/tech-examples/clock',
-        text: 'Clock in JavaScript.'
+        text: 'Часы на JavaScript.'
     },
 ];
 
 export const header = [
     {
         id: 1, "name": 'Frontend', "items": [
-            {"href": "/html", "label": "Learn HTML"},
-            {"href": "/css", "label": "Learn CSS"},
-            {"href": "/java-script", "label": "Learn JavaScript"},
-            {"href": "/bootstrap", "label": "Learn Bootstrap"}
+            {"href": "/html", "label": "Изучаем HTML"},
+            {"href": "/css", "label": "Изучаем CSS"},
+            {"href": "/java-script", "label": "Изучаем JavaScript"},
+            {"href": "/bootstrap", "label": "Изучаем Bootstrap"}
         ]
     },
     {
         id: 2, "name": 'Backend', "items": [
-            {"href": "/type-script", "label": "Learn TypeScript"},
-            {"href": "/golang", "label": "Learn Golang"},
-            {"href": "/java", "label": "Learn Java"}
+            {"href": "/type-script", "label": "Изучаем TypeScript"},
+            {"href": "/golang", "label": "Изучаем Golang"},
+            {"href": "/java", "label": "Изучаем Java"}
 
         ]
     },
     {
         id: 3, "name": 'Game Developer', "items": [
-            {"href": "/C++", "label": "Learn C++"},
-            {"href": "/C#", "label": "Learn C#"},
-            {"href": "/rust", "label": "Learn Rust"}
+            {"href": "/C++", "label": "Изучаем C++"},
+            {"href": "/C#", "label": "Изучаем C#"},
+            {"href": "/rust", "label": "Изучаем Rust"}
 
 
         ]
     },
     {
         id: 4, "name": '1C Developer', "items": [
-            {"href": "/1c-base", "label": "Learn Base 1C"},
-            {"href": "/1c-form", "label": "Learn Form"},
-            {"href": "/1c-query", "label": "Learn Query"}
+            {"href": "/1c-base", "label": "Изучаем основы 1С"},
+            {"href": "/1c-form", "label": "Изучаем формы 1С"},
+            {"href": "/1c-query", "label": "Изучаем запросы 1С"}
         ]
     },
     {
         id: 5, "name": 'Services', "items": [
-            {"href": "/login", "label": "Login / Sign Up"},
-            {"href": "/templates", "label": "Templates"},
-            {"href": "/how-to-create", "label": "How to create"},
-            {"href": "/tech-examples", "label": "Tech Examples"},
+            {"href": "/login", "label": "Вход / Регистрация"},
+            {"href": "/templates", "label": "Шаблоны"},
+            {"href": "/how-to-create", "label": "Как это сделать"},
+            {"href": "/tech-examples", "label": "Технические примеры"},
         ]
     }
 ]

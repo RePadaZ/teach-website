@@ -27,7 +27,7 @@ const TRPC_CLIENT = TRPC.createClient({
         httpBatchLink({
             url: "http://localhost:8080",
             headers: () => {
-                const token = Cookies.get("token");
+                const token = Cookies.get("token_session_teach_website");
                 return {
                     ...(token && {authorization: `Bearer ${token}`}),
                 }

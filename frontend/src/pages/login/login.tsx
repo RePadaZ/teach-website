@@ -8,15 +8,15 @@ import {useNavigate} from "react-router-dom";
 
 /* Схема валидации */
 const validationSchema = Yup.object({
-    login: Yup.string().matches(/^(?!\s*$)/, "Login cannot be only spaces and must contain letters.").required("Please fill in your login."),
-    password: Yup.string().min(8, "Password must be at least 8 characters").required("Please fill in your password."),
+    login: Yup.string().matches(/^(?!\s*$)/, "Логин не может быть пустым и и должен содержать буквы.").required("Пожалуйста, заполните свой логин."),
+    password: Yup.string().min(8, "Пароль должен быть не менее 8 символов").required("Пожалуйста, заполните свой пароль."),
 });
 
 export function Login() {
 
     // navigate для переадресации
     const navigate = useNavigate();
-    
+
     // Ошибки с сервера
     const [serverError, setServerError] = useState<string | null>(null);
 
@@ -26,7 +26,7 @@ export function Login() {
     const mutation = TRPC.LoginUserForm.useMutation({
         onSuccess: ({token}) => {
             setServerError(null);
-            Cookies.set("token", token, {expires: 99999});
+            Cookies.set("token_session_teach_website", token, {expires: 99999});
             trpcUtils.invalidate();
             navigate("/");
         },
@@ -47,7 +47,7 @@ export function Login() {
             <Transition appear show enter="transition-opacity duration-1000" enterFrom="opacity-0"
                         enterTo="opacity-100">
                 <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl p-8">
-                    <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">Login to your account</h2>
+                    <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">Войти в свой аккаунт</h2>
 
                     <Formik initialValues={{login: "", password: "", rememberMe: false}}
                             validationSchema={validationSchema} onSubmit={handleSubmit}>
@@ -55,8 +55,8 @@ export function Login() {
                             <Form className="space-y-6">
                                 {/* Поля формы */}
                                 {[
-                                    {label: "Your Login", name: "login", type: "text", placeholder: "Login"},
-                                    {label: "Password", name: "password", type: "password", placeholder: "Password"},
+                                    {label: "Ваш логин", name: "login", type: "text", placeholder: "Логин"},
+                                    {label: "Пароль", name: "password", type: "password", placeholder: "Пароль"},
                                 ].map(({label, name, type, placeholder}) => (
                                     <div key={name}>
                                         <label htmlFor={name}
@@ -72,20 +72,21 @@ export function Login() {
                                 <div className="flex items-center justify-center">
                                     <Field id="rememberMe" name="rememberMe" type="checkbox"
                                            className="w-5 h-5 text-blue-500 rounded focus:ring-blue-600"/>
-                                    <label htmlFor="rememberMe" className="ml-2 text-sm text-gray-300">Remember login
-                                        details</label>
+                                    <label htmlFor="rememberMe" className="ml-2 text-sm text-gray-300">Запомнить данные
+                                        для входа</label>
                                 </div>
 
                                 {/* Кнопка отправки */}
                                 <button type="submit" disabled={isSubmitting}
                                         className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                                    Login
+                                    Войти
                                 </button>
 
                                 {/* Ссылка на регистрацию */}
                                 <p className="text-center text-gray-400">
-                                    Don't have an account?{" "}
-                                    <a href="/sign" className="text-blue-400 hover:text-blue-300 underline">Sign up</a>
+                                    У вас нет учетной записи?{" "}
+                                    <a href="/sign"
+                                       className="text-blue-400 hover:text-blue-300 underline">Зарегистрироваться</a>
                                 </p>
 
                                 {/* Ошибка от сервера */}

@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {TRPC} from "../lib/trcp_create.tsx";
+import {TRPC} from "../../lib/trcp_create.tsx";
 import {useEffect} from "react";
 import Cookies from "js-cookie";
 
@@ -12,9 +12,11 @@ export function LogOut() {
     const trpcUtils = TRPC.useUtils();
 
     useEffect(() => {
-        Cookies.remove("token");
+        Cookies.remove("token_session_teach_website");
         void trpcUtils.invalidate().then(() => {
             navigate("/", {replace: true})
         })
     }, []);
+
+    return (<>Loading</>)
 }
