@@ -3,17 +3,19 @@ import {TRPC} from "../trpc/init_trpc";
 import {TRPCError} from "@trpc/server";
 import {cryptoPassword, SignJWT} from "../util_module/utils";
 
+// Валидация данных на бэкенде
 const userSchema = z.object({
     login: z.string()
-        .min(1, "Name is required")
-        .max(100, "Name is too long")
-        .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces")
+        .min(1, "Логин не может быть пустым.")
+        .max(100, "Логин слишком длинный.")
+        .regex(/^[a-zA-Z\s]+$/, "Логин может содержать только буквы и пробелы.")
         .trim(),
-    email: z.string().email("Invalid email format"),
-    password: z.string().min(8, "password must be at least 8 characters long"),
+    email: z.string().email("Неверный формат электронной почты."),
+    password: z.string().min(8, "Пароль должен быть не менее 8 символов длиной."),
     agreeTerms: z.boolean().refine(() => true),
 });
 
+// Функция для регистрации пользователя и создания его в базе
 export const CreateUserForm = TRPC.procedure.input(userSchema).mutation(async ({input, ctx}) => {
     try {
         // Проверяем, существует ли пользователь с таким логином
@@ -26,7 +28,7 @@ export const CreateUserForm = TRPC.procedure.input(userSchema).mutation(async ({
         if (exUser) {
             throw new TRPCError({
                 code: "CONFLICT",
-                message: "User with this login already exists.",
+                message: "Данный логин занят.",
             });
         }
 
@@ -40,7 +42,7 @@ export const CreateUserForm = TRPC.procedure.input(userSchema).mutation(async ({
         if (exUser) {
             throw new TRPCError({
                 code: "CONFLICT",
-                message: "User with this email already exists.",
+                message: "Пользователь с такой электронной почтой уже существует.",
             });
         }
 
@@ -64,7 +66,7 @@ export const CreateUserForm = TRPC.procedure.input(userSchema).mutation(async ({
 
         throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR",
-            message: "Failed to submit the form. Please try again later.",
+            message: "Не удалось отправить форму. Пожалуйста, попробуйте еще раз позже.",
         });
     }
 });

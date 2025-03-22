@@ -3,15 +3,17 @@ import {TRPC} from "../trpc/init_trpc";
 import {TRPCError} from "@trpc/server";
 import {cryptoPassword, SignJWT} from "../util_module/utils";
 
+// Валидация данных на бэке
 const userSchema = z.object({
     login: z.string()
-        .min(1, "Name is required")
-        .max(100, "Name is too long")
-        .regex(/^(?!\s*$)/, "Login cannot be only spaces and must contain letters.")
+        .min(1, "Логин не может быть пустым.")
+        .max(100, "Логин слишком длинный.")
+        .regex(/^(?!\s*$)/, "Логин может содержать только буквы и пробелы.")
         .trim(),
-    password: z.string().min(8, "password must be at least 8 characters long"),
+    password: z.string().min(8, "Пароль должен быть не менее 8 символов длиной."),
 });
 
+// Вход пользователя на наш сайт
 export const LoginUserForm = TRPC.procedure.input(userSchema).mutation(async ({input, ctx}) => {
     try {
         // Проверяем, существует ли пользователь с таким логином
@@ -24,14 +26,14 @@ export const LoginUserForm = TRPC.procedure.input(userSchema).mutation(async ({i
         if (!exUser) {
             throw new TRPCError({
                 code: "CONFLICT",
-                message: "This user is not registered or incorrect data has been entered.",
+                message: "Пользователь с такими данными не является зарегистрированным или введены не верные данные.",
             });
         }
 
         if (exUser.password != cryptoPassword(input.password)) {
             throw new TRPCError({
                 code: "CONFLICT",
-                message: "This user is not registered or incorrect data has been entered.",
+                message: "Пользователь с такими данными не является зарегистрированным или введены не верные данные.",
             });
         }
 
@@ -46,7 +48,7 @@ export const LoginUserForm = TRPC.procedure.input(userSchema).mutation(async ({i
 
         throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR",
-            message: "Failed to submit the form. Please try again later.",
+            message: "Не удалось отправить форму. Пожалуйста, попробуйте еще раз позже.",
         });
     }
 });
