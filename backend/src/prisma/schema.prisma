@@ -2,11 +2,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Данные для БД 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+// Модель таблицы User
 model User {
   id        String   @id @default(uuid())
   login     String   @unique
@@ -15,6 +17,7 @@ model User {
   createdAt DateTime @default(now())
 }
 
+// Модель таблицы ContactInfo
 model ContactInfo {
   id      String @id @default(uuid())
   name    String
