@@ -37,7 +37,7 @@ const TRPC_CLIENT = TRPC.createClient({
 })
 
 // Обработчик TRPC для наших данных
-export const TRPC_PROVIDER = ({children}: { children: React.ReactNode }) => {
+export const TrpcProvider = ({children}: { children: React.ReactNode }) => {
     return (
         <TRPC.Provider client={TRPC_CLIENT} queryClient={QUERY_CLIENT}>
             <QueryClientProvider client={QUERY_CLIENT}>{children}</QueryClientProvider>

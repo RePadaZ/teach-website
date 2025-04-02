@@ -34,25 +34,23 @@ export const header = [
         id: 1, "name": 'Frontend', "items": [
             {"href": "/html", "label": "Изучаем HTML"},
             {"href": "/css", "label": "Изучаем CSS"},
-            {"href": "/java-script", "label": "Изучаем JavaScript"},
-            {"href": "/bootstrap", "label": "Изучаем Bootstrap"}
+            {"href": "/type-script-front", "label": "Изучаем TypeScript"}
         ]
     },
     {
         id: 2, "name": 'Backend', "items": [
-            {"href": "/type-script", "label": "Изучаем TypeScript"},
+            {"href": "/type-script-back", "label": "Изучаем TypeScript"},
             {"href": "/golang", "label": "Изучаем Golang"},
-            {"href": "/java", "label": "Изучаем Java"}
+            {"href": "/java", "label": "Изучаем Java"},
+            {"href": "/kotlin", "label": "Изучаем Kotlin"},
 
         ]
     },
     {
-        id: 3, "name": 'Game Developer', "items": [
+        id: 3, "name": 'System-level programming', "items": [
+            {"href": "/C", "label": "Изучаем C"},
             {"href": "/C++", "label": "Изучаем C++"},
-            {"href": "/C#", "label": "Изучаем C#"},
             {"href": "/rust", "label": "Изучаем Rust"}
-
-
         ]
     },
     {
