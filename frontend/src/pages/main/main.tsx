@@ -75,7 +75,7 @@ export function Main() {
                     <h2 className="text-4xl font-bold text-white mb-12">Разделы, доступные для обучения</h2>
                 </div>
                 {mainCards.map((card, index) => (
-                    <Cards key={index} index={index} title={card.title} text={card.text} href={card.href}
+                    <Cards key={card.id} index={index} title={card.title} text={card.text} href={card.href}
                            button={card.button}/>
                 ))}
             </div>
