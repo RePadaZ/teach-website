@@ -39,25 +39,25 @@ export const header = [
     },
     {
         id: 2, "name": 'Backend', "items": [
+            {"href": "/kotlin", "label": "Изучаем Kotlin"},
             {"href": "/type-script-back", "label": "Изучаем TypeScript"},
             {"href": "/golang", "label": "Изучаем Golang"},
             {"href": "/java", "label": "Изучаем Java"},
-            {"href": "/kotlin", "label": "Изучаем Kotlin"},
+        ]
+    },
 
-        ]
-    },
     {
-        id: 3, "name": 'System-level programming', "items": [
-            {"href": "/C", "label": "Изучаем C"},
-            {"href": "/C++", "label": "Изучаем C++"},
-            {"href": "/rust", "label": "Изучаем Rust"}
-        ]
-    },
-    {
-        id: 4, "name": '1C Developer', "items": [
+        id: 3, "name": '1C Developer', "items": [
             {"href": "/1c-base", "label": "Изучаем основы 1С"},
-            {"href": "/1c-form", "label": "Изучаем формы 1С"},
-            {"href": "/1c-query", "label": "Изучаем запросы 1С"}
+            {"href": "/1c-query", "label": "Изучаем запросы 1С"},
+            {"href": "/1c-form", "label": "Изучаем 1С специалист"},
+        ]
+    },
+    {
+        id: 4, "name": 'Software Engineering Fundamentals', "items": [
+            {"href": "/algorithm", "label": "Изучаем алгоритмы"},
+            {"href": "/data-structures", "label": "Изучаем структуры данных"},
+            {"href": "/design-patterns", "label": "Изучаем шаблоны проектирования"}
         ]
     },
     {
