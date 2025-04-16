@@ -4,25 +4,26 @@ import {z} from "zod";
 // Валидация формы с использованием zod
 const contactSchema = z.object({
     name: z.string()
-        .min(1, "Name is required")
-        .max(100, "Name is too long")
-        .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces")
+        .min(1, "Имя не может быть пустым")
+        .max(100, "Имя слишком длинное")
+        .regex(/^[a-zA-Z\s]+$/, "Имя может содержать только буквы и пробелы")
         .trim(),
-    email: z.string().email("Invalid email format"),
+    email: z.string().email("Неверный формат электронной почты"),
     phone: z.string()
         .optional() // phone может быть undefined
         .refine((val) => !val || val.length <= 20, {
-            message: "Phone number is too long",
+            message: "Номер телефона слишком длинный",
         })
         .refine((val) => !val || /^\+?\d{7,20}$/.test(val), {
-            message: "Invalid phone number format",
+            message: "Неверный формат номера телефона",
         }),
     message: z.string()
-        .min(1, "Message cannot be empty")
-        .max(500, "Message is too long")
+        .min(1, "Сообщение не может быть пустым")
+        .max(500, "Сообщение слишком длинное")
         .trim(),
 });
 
+// Функция создание записи данных в БД для обратной связи
 export const CreateContactForm = TRPC.procedure.input(contactSchema).mutation(async ({input, ctx}) => {
     try {
         await ctx.prisma.contactInfo.create({
@@ -31,6 +32,6 @@ export const CreateContactForm = TRPC.procedure.input(contactSchema).mutation(as
         return {success: true};
     } catch (err) {
         console.error(err);
-        throw new Error("Failed to submit the form. Please try again later.");
+        throw new Error("Не удалось отправить форму. Пожалуйста, попробуйте еще раз позже.");
     }
 });

@@ -1,4 +1,4 @@
-import {TRPC_PROVIDER} from "./lib/trpc.tsx";
+import {TrpcProvider} from "./lib/trpc.tsx";
 import {Header} from "./components/header/header.tsx";
 import {TechExamples} from "./pages/tech-examples/tech-examples.tsx";
 import {Footer} from './components/footer/footer.tsx'
@@ -11,13 +11,16 @@ import {ToDoList} from "./pages/tech-examples-pages/to_do_list.tsx";
 import {ContactForm} from "./pages/contact/contact_form.tsx";
 import {OneCBaseMain} from "./pages/1C/one_c_base_main.tsx";
 import {OneCBaseFundamentals} from "./pages/1C/one_c_base_fundamentals.tsx"
-import {LogOut} from "./pages/LogOut.tsx";
+import {LogOut} from "./pages/log-out/log_out.tsx";
+import {OneCServer} from "./pages/1C/one_c_server.tsx"
+import {Algorithm} from "./pages/algorithm/algorithm.tsx";
+import {AlgorithmVideo} from "./pages/algorithm/algorithm_video.tsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 
 export const App = () => {
     return (
-        <TRPC_PROVIDER>
+        <TrpcProvider>
             <Header/>
             <BrowserRouter>
                 <Routes>
@@ -32,9 +35,12 @@ export const App = () => {
                     <Route path={'/1C-Base'} element={<OneCBaseMain/>}/>
                     <Route path={'/1C-Base/OneCBaseFundamentals'} element={<OneCBaseFundamentals/>}/>
                     <Route path={'/LogOut'} element={<LogOut/>}/>
+                    <Route path={'/1C-Base/1C-server'} element={<OneCServer/>}/>
+                    <Route path={'/algorithm'} element={<Algorithm/>}/>
+                    <Route path={'/algorithm/video'} element={<AlgorithmVideo/>}/>
                 </Routes>
             </BrowserRouter>
             <Footer/>
-        </TRPC_PROVIDER>
+        </TrpcProvider>
     )
 }

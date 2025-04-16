@@ -29,7 +29,7 @@ export function Main() {
                         enterFrom="opacity-0"
                         enterTo="opacity-100"
                     >
-                        <h1 className="text-6xl font-bold mb-6">Learn to Code</h1>
+                        <h1 className="text-6xl font-bold mb-6">Изучайте программирование</h1>
                     </Transition>
                     <Transition
                         appear={true}
@@ -39,8 +39,8 @@ export function Main() {
                         enterTo="opacity-100"
                     >
                         <h3 className="text-2xl mb-6">
-                            You will find many useful resources here,
-                            <br/>including articles, lessons, code examples, and practical assignments.
+                            Вы найдете здесь много полезных ресурсов,
+                            <br/>включая статьи, уроки, примеры кода и практические задания.
                         </h3>
                     </Transition>
                     <Transition
@@ -54,7 +54,7 @@ export function Main() {
                             href="/to-start"
                             className="text-lg font-bold hover:text-blue-300 transition-colors"
                         >
-                            Not Sure Where To Begin?
+                            Не уверены, с чего начать?
                         </a>
                     </Transition>
                 </div>
@@ -72,10 +72,11 @@ export function Main() {
                 className="min-h-screen py-12 px-6 bg-gray-800 flex flex-wrap justify-center items-start gap-8"
             >
                 <div className="w-full text-center">
-                    <h2 className="text-4xl font-bold text-white mb-12">Sections available for study</h2>
+                    <h2 className="text-4xl font-bold text-white mb-12">Разделы, доступные для обучения</h2>
                 </div>
                 {mainCards.map((card, index) => (
-                    <Cards index={index} title={card.title} text={card.text} href={card.href} button={card.button}/>
+                    <Cards key={card.id} index={index} title={card.title} text={card.text} href={card.href}
+                           button={card.button}/>
                 ))}
             </div>
         </div>

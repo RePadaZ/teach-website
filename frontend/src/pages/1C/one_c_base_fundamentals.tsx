@@ -41,6 +41,16 @@ export function OneCBaseFundamentals() {
                 <ul className="space-y-4">
                     <li>
                         <a
+                            href="https://v8.1c.ru/metod/books/"
+                            className="text-blue-400 hover:text-blue-300 underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Ресурс на котором можно найти все основные книги по 1С для обучения
+                        </a>
+                    </li>
+                    <li>
+                        <a
                             href="https://fastcode.im/Templates"
                             className="text-blue-400 hover:text-blue-300 underline"
                             target="_blank"
@@ -99,7 +109,7 @@ export function OneCBaseFundamentals() {
                     </a>
                     {/* Кнопка перехода на следующую страницу */}
                     <a
-                        href="/1C-Base/OneCBaseFundamentals"
+                        href="/1C-Base/1C-server"
                         className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors text-white font-bold"
                     >
                         Продолжить

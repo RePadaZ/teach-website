@@ -8,7 +8,7 @@ import {config} from "../util_module/utils";
 export const applyPassportToExpress = (expressApp: Express, ctx: AppContext) => {
 
     const passport = new Passport()
-
+    // Проверка jwt токена человека для авторизации
     passport.use(
         new JWTStrategy(
             {
@@ -30,13 +30,18 @@ export const applyPassportToExpress = (expressApp: Express, ctx: AppContext) => 
             }
         )
     )
-
+    // Если нет данных об авторизации то пропускам проверку
     expressApp.use((req, res, next) => {
         if (!req.headers.authorization) {
             next()
             return;
         }
-        passport.authenticate('jwt', {session: false})(req, res, next);
+        // Если токен отсуствует или сломан тогда просто пропускам
+        passport.authenticate('jwt', {session: false}, (...args: any[]) => {
+            req.user = args[1] || undefined;
+            next();
+        })(req, res, next);
+
 
     });
 }

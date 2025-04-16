@@ -9,13 +9,13 @@ import {useNavigate} from "react-router-dom";
 
 /* Схема валидации формы */
 const validationSchema = Yup.object({
-    login: Yup.string().required("Please fill in your name."),
-    email: Yup.string().email("Invalid email address.").required("Please fill in your email."),
-    password: Yup.string().required("Please fill in your password.").min(8),
+    login: Yup.string().required("Пожалуйста, введите свой логин."),
+    email: Yup.string().email("Неверный адрес электронной почты.").required("Пожалуйста, введите свою электронную почту."),
+    password: Yup.string().required("Пожалуйста, введите свой пароль.").min(8),
     repeatPassword: Yup.string()
-        .oneOf([Yup.ref("password")], "Passwords must match")
-        .required("Please confirm your password."),
-    agreeTerms: Yup.boolean().oneOf([true], "You must agree to the terms."),
+        .oneOf([Yup.ref("password")], "Пароли должны совпадать")
+        .required("Пожалуйста, подтвердите свой пароль."),
+    agreeTerms: Yup.boolean().oneOf([true], "Вы должны согласиться с условиями."),
 });
 
 export function Sign() {
@@ -26,11 +26,11 @@ export function Sign() {
 
     // Вызов TRPC utils для сброса валидации даныых и перезапроса их на севере
     const trpcUtils = TRPC.useUtils();
-    
+
     const mutation = TRPC.CreateUserForm.useMutation({
         onSuccess: ({token}) => {
             setServerError(null);
-            Cookies.set("token", token, {expires: 99999});
+            Cookies.set("token_session_teach_website", token, {expires: 99999});
             trpcUtils.invalidate();
             navigate("/");
         },
@@ -57,7 +57,7 @@ export function Sign() {
             >
                 <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl p-8">
                     <h2 className="text-2xl font-bold text-white text-center mb-8 uppercase">
-                        Create an account
+                        Создать аккаунт
                     </h2>
                     {/* Вызов обработки нажатия и валидация */}
                     <Formik
@@ -76,13 +76,13 @@ export function Sign() {
                                 {/* Логин */}
                                 <div>
                                     <label htmlFor="login" className="block text-sm font-medium text-gray-300 mb-2">
-                                        Your Login
+                                        Ваш логин
                                     </label>
                                     <Field
                                         id="login"
                                         name="login"
                                         type="text"
-                                        placeholder="Login"
+                                        placeholder="Логин"
                                         className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                                     />
                                     <ErrorMessage name="login" component="div" className="text-red-400 text-sm mt-1"/>
@@ -90,7 +90,7 @@ export function Sign() {
                                 {/* Емаил */}
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                                        Your Email
+                                        Ваша электронная почта
                                     </label>
                                     <Field
                                         id="email"
@@ -104,13 +104,13 @@ export function Sign() {
                                 {/* Пароль */}
                                 <div>
                                     <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
-                                        Password
+                                        Ваш пароль
                                     </label>
                                     <Field
                                         id="password"
                                         name="password"
                                         type="password"
-                                        placeholder="Password"
+                                        placeholder="Пароль"
                                         className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                                     />
                                     <ErrorMessage name="password" component="div"
@@ -120,13 +120,13 @@ export function Sign() {
                                 <div>
                                     <label htmlFor="repeatPassword"
                                            className="block text-sm font-medium text-gray-300 mb-2">
-                                        Repeat your password
+                                        Повторите ваш пароль
                                     </label>
                                     <Field
                                         id="repeatPassword"
                                         name="repeatPassword"
                                         type="password"
-                                        placeholder="Repeat Password"
+                                        placeholder="Повторите ваш пароль"
                                         className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                                     />
                                     <ErrorMessage name="repeatPassword" component="div"
@@ -141,7 +141,7 @@ export function Sign() {
                                         className="w-5 h-5 text-blue-500 rounded focus:ring-blue-600"
                                     />
                                     <label htmlFor="agreeTerms" className="ml-2 text-sm text-gray-300">
-                                        I agree all statements in {" "}
+                                        Я согласен со всем в {" "}
                                         <a href="#" className="text-blue-400 hover:text-blue-300 underline">
                                             Terms of service
                                         </a>
@@ -156,14 +156,14 @@ export function Sign() {
                                         disabled={isSubmitting}
                                         className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                                     >
-                                        Register
+                                        Зарегистрироваться
                                     </button>
                                 </div>
                                 {/* Ссылка на логин */}
                                 <p className="text-center text-gray-400">
-                                    Have already an account? {" "}
+                                    Уже есть аккаунт? {" "}
                                     <a href="/login" className="text-blue-400 hover:text-blue-300 underline">
-                                        Login here
+                                        Войти тут
                                     </a>
                                 </p>
 
